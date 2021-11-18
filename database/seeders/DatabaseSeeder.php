@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
              'name' => 'Administrator',
              'password' => bcrypt('VerySecurePassword')
          ]);
+
+        app(ProductSeeder::class)->run();
     }
 }
