@@ -2,12 +2,33 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
+use App\Models\Product;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class ProductTable extends Component
+class ProductTable extends DataTableComponent
 {
-    public function render()
+    public bool $columnSelect = true;
+
+    public string $defaultSortColumn = 'identifier';
+
+    public function columns(): array
     {
-        return view('livewire.product-table');
+        return [
+            Column::make('Identifier')
+                ->searchable(),
+            Column::make('Enabled'),
+            Column::make('Type'),
+            Column::make('Family')
+                ->searchable(),
+            Column::make('Created At'),
+            Column::make('Updated At'),
+            //Column::blank()
+        ];
+    }
+
+    public function query()
+    {
+        return Product::with('attributes');
     }
 }
