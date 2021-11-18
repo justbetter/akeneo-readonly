@@ -10,6 +10,21 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'categories' => 'array',
+        'groups' => 'array'
+    ];
+
+    protected $fillable = [
+        'identifier',
+        'type',
+        'enabled',
+        'family',
+        'categories',
+        'groups',
+        'parent'
+    ];
+
     public function attributes(): HasMany
     {
         return $this->hasMany(Attribute::class);

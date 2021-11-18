@@ -16,6 +16,12 @@ class Attribute extends Model
         'value' => 'array'
     ];
 
+    protected $fillable = [
+        'product_id',
+        'code',
+        'value'
+    ];
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

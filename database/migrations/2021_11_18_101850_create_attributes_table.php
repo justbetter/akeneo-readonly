@@ -15,8 +15,6 @@ class CreateAttributesTable extends Migration
             $table->foreignIdFor(Product::class);
 
             $table->string('code');
-            $table->string('type');
-            $table->string('group');
             $table->json('value');
         });
     }
