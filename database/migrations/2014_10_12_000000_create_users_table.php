@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
 
             $table->boolean('admin')->default(false);
+            $table->json('filament_roles')->nullable();
 
             $table->timestamps();
         });

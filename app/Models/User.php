@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Filament\Models\Concerns\IsFilamentUser;
+use Filament\Models\Concerns\SendsFilamentPasswordResetNotification;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,13 +13,17 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use IsFilamentUser;
+    use SendsFilamentPasswordResetNotification;
+
+    public static string $filamentUserColumn = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +34,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'admin'
     ];
 
     /**
@@ -48,6 +56,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'admin' => 'boolean'
     ];
 
     /**
@@ -58,4 +67,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function isFilamentAdmin()
+    {
+        return $this->admin;
+    }
 }

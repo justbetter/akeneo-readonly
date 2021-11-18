@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11701ca0dfa32d287541a0158bf041da",
+    "content-hash": "9a0a037561f34eeb149ff62eb8361149",
     "packages": [
         {
             "name": "akeneo/api-php-client",
@@ -175,6 +175,156 @@
             "time": "2021-06-18T13:26:35+00:00"
         },
         {
+            "name": "blade-ui-kit/blade-heroicons",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blade-ui-kit/blade-heroicons.git",
+                "reference": "99d82616a72e36492edc9b95c6a2112d8632e9a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-heroicons/zipball/99d82616a72e36492edc9b95c6a2112d8632e9a7",
+                "reference": "99d82616a72e36492edc9b95c6a2112d8632e9a7",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.0",
+                "illuminate/support": "^8.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Heroicons\\BladeHeroiconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BladeUI\\Heroicons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "homepage": "https://driesvints.com"
+                }
+            ],
+            "description": "A package to easily make use of Heroicons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-heroicons",
+            "keywords": [
+                "Heroicons",
+                "blade",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/blade-ui-kit/blade-heroicons/issues",
+                "source": "https://github.com/blade-ui-kit/blade-heroicons/tree/1.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/caneco",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/driesvints",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-05-05T14:59:46+00:00"
+        },
+        {
+            "name": "blade-ui-kit/blade-icons",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blade-ui-kit/blade-icons.git",
+                "reference": "548869bc820a25f803530c82028482aefe08115f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/548869bc820a25f803530c82028482aefe08115f",
+                "reference": "548869bc820a25f803530c82028482aefe08115f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0",
+                "illuminate/filesystem": "^8.0",
+                "illuminate/support": "^8.0",
+                "illuminate/view": "^8.0",
+                "php": "^7.4|^8.0",
+                "symfony/console": "^5.3",
+                "symfony/finder": "^5.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "bin": [
+                "bin/blade-icons-generate"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Icons\\BladeIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BladeUI\\Icons\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "homepage": "https://driesvints.com"
+                }
+            ],
+            "description": "A package to easily make use of icons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-icons",
+            "keywords": [
+                "blade",
+                "icons",
+                "laravel",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/blade-ui-kit/blade-icons/issues",
+                "source": "https://github.com/blade-ui-kit/blade-icons"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/caneco",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/driesvints",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-08-11T10:09:06+00:00"
+        },
+        {
             "name": "brick/math",
             "version": "0.9.3",
             "source": {
@@ -233,6 +383,111 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "danharrin/date-format-converter",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danharrin/date-format-converter.git",
+                "reference": "ee448ab0cbe2ea36edb886a01670fc760e388f19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danharrin/date-format-converter/zipball/ee448ab0cbe2ea36edb886a01670fc760e388f19",
+                "reference": "ee448ab0cbe2ea36edb886a01670fc760e388f19",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php",
+                    "src/standards.php"
+                ],
+                "psr-4": {
+                    "DanHarrin\\DateFormatConverter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Harrin",
+                    "email": "dan@danharrin.com"
+                }
+            ],
+            "description": "Convert token-based date formats between standards.",
+            "homepage": "https://github.com/danharrin/date-format-converter",
+            "support": {
+                "issues": "https://github.com/danharrin/date-format-converter/issues",
+                "source": "https://github.com/danharrin/date-format-converter"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/danharrin",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-02-10T23:58:47+00:00"
+        },
+        {
+            "name": "danharrin/livewire-rate-limiting",
+            "version": "v0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danharrin/livewire-rate-limiting.git",
+                "reference": "c97041cd4f94168d5077d4463062e681d057e00a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danharrin/livewire-rate-limiting/zipball/c97041cd4f94168d5077d4463062e681d057e00a",
+                "reference": "c97041cd4f94168d5077d4463062e681d057e00a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "livewire/livewire": "^2.3",
+                "orchestra/testbench": "^6.2",
+                "phpunit/phpunit": "^9.4",
+                "symplify/monorepo-builder": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DanHarrin\\LivewireRateLimiting\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Harrin",
+                    "email": "dan@danharrin.com"
+                }
+            ],
+            "description": "Apply rate limiters to Laravel Livewire actions.",
+            "homepage": "https://github.com/danharrin/livewire-rate-limiting",
+            "support": {
+                "issues": "https://github.com/danharrin/livewire-rate-limiting/issues",
+                "source": "https://github.com/danharrin/livewire-rate-limiting"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/danharrin",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-05-17T08:01:19+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -655,6 +910,89 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "filament/filament",
+            "version": "v1.13.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-filament/admin.git",
+                "reference": "859f607d2e1e2e5f2f062e0019ca58d645b67373"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-filament/admin/zipball/859f607d2e1e2e5f2f062e0019ca58d645b67373",
+                "reference": "859f607d2e1e2e5f2f062e0019ca58d645b67373",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-heroicons": "^1.0",
+                "danharrin/date-format-converter": "^0.2",
+                "danharrin/livewire-rate-limiting": "^0.3",
+                "illuminate/auth": "^8.0",
+                "illuminate/console": "^8.0",
+                "illuminate/cookie": "^8.0",
+                "illuminate/database": "^8.0",
+                "illuminate/filesystem": "^8.0",
+                "illuminate/http": "^8.0",
+                "illuminate/notifications": "^8.0",
+                "illuminate/routing": "^8.0",
+                "illuminate/session": "^8.0",
+                "illuminate/support": "^8.0",
+                "illuminate/view": "^8.0",
+                "league/glide-laravel": "^1.0",
+                "livewire/livewire": "^2.6",
+                "php": "^7.4|^8.0",
+                "thomaswelton/laravel-gravatar": "^1.0"
+            },
+            "replace": {
+                "filament/forms": "self.version",
+                "filament/tables": "self.version"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.5",
+                "symplify/monorepo-builder": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Filament\\FilamentServiceProvider",
+                        "Filament\\Forms\\FormsServiceProvider",
+                        "Filament\\Tables\\TablesServiceProvider"
+                    ],
+                    "aliases": {
+                        "FilamentManager": "Filament\\Filament"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Filament\\": "src",
+                    "Filament\\Forms\\": "packages/forms/src",
+                    "Filament\\Database\\Factories\\": "database/factories",
+                    "Filament\\Tables\\": "packages/tables/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The elegant TALL stack admin panel for Laravel artisans.",
+            "support": {
+                "source": "https://github.com/laravel-filament/admin/tree/v1.13.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/danharrin",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-11-04T11:48:04+00:00"
         },
         {
             "name": "fruitcake/laravel-cors",
@@ -1116,6 +1454,90 @@
                 }
             ],
             "time": "2021-10-06T17:43:30+00:00"
+        },
+        {
+            "name": "intervention/image",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "9a8cc99d30415ec0b3f7649e1647d03a55698545"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/9a8cc99d30415ec0b3f7649e1647d03a55698545",
+                "reference": "9a8cc99d30415ec0b3f7649e1647d03a55698545",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1 || ^2.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5.15"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Intervention\\Image\\ImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Intervention\\Image\\Facades\\Image"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.com",
+                    "homepage": "http://olivervogel.com/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "support": {
+                "issues": "https://github.com/Intervention/image/issues",
+                "source": "https://github.com/Intervention/image/tree/2.7.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/interventionphp",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Intervention",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-10-03T14:17:12+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -2187,6 +2609,164 @@
                 }
             ],
             "time": "2021-08-17T13:49:42+00:00"
+        },
+        {
+            "name": "league/glide",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/glide.git",
+                "reference": "ae5e26700573cb678919d28e425a8b87bc71c546"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/glide/zipball/ae5e26700573cb678919d28e425a8b87bc71c546",
+                "reference": "ae5e26700573cb678919d28e425a8b87bc71c546",
+                "shasum": ""
+            },
+            "require": {
+                "intervention/image": "^2.4",
+                "league/flysystem": "^1.0",
+                "php": "^7.2|^8.0",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "phpunit/php-token-stream": "^3.1|^4.0",
+                "phpunit/phpunit": "^8.5|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Glide\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Reinink",
+                    "email": "jonathan@reinink.ca",
+                    "homepage": "http://reinink.ca"
+                }
+            ],
+            "description": "Wonderfully easy on-demand image manipulation library with an HTTP based API.",
+            "homepage": "http://glide.thephpleague.com",
+            "keywords": [
+                "ImageMagick",
+                "editing",
+                "gd",
+                "image",
+                "imagick",
+                "league",
+                "manipulation",
+                "processing"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/glide/issues",
+                "source": "https://github.com/thephpleague/glide/tree/1.7.0"
+            },
+            "time": "2020-11-05T17:34:03+00:00"
+        },
+        {
+            "name": "league/glide-laravel",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/glide-laravel.git",
+                "reference": "b525e33e32940f3b047d6ca357131aba0e973e72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/glide-laravel/zipball/b525e33e32940f3b047d6ca357131aba0e973e72",
+                "reference": "b525e33e32940f3b047d6ca357131aba0e973e72",
+                "shasum": ""
+            },
+            "require": {
+                "league/glide-symfony": "^1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9",
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Glide\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Reinink",
+                    "email": "jonathan@reinink.ca",
+                    "homepage": "http://reinink.ca"
+                }
+            ],
+            "description": "Glide adapter for Laravel",
+            "homepage": "http://glide.thephpleague.com",
+            "support": {
+                "issues": "https://github.com/thephpleague/glide-laravel/issues",
+                "source": "https://github.com/thephpleague/glide-laravel/tree/master"
+            },
+            "time": "2015-12-26T15:40:35+00:00"
+        },
+        {
+            "name": "league/glide-symfony",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/glide-symfony.git",
+                "reference": "8162ec0e0b070e53e88a840a67208ec4baec9291"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/glide-symfony/zipball/8162ec0e0b070e53e88a840a67208ec4baec9291",
+                "reference": "8162ec0e0b070e53e88a840a67208ec4baec9291",
+                "shasum": ""
+            },
+            "require": {
+                "league/glide": "^1.0",
+                "symfony/http-foundation": "^2.3|^3.0|^4.0|^5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9",
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Glide\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Reinink",
+                    "email": "jonathan@reinink.ca",
+                    "homepage": "http://reinink.ca"
+                }
+            ],
+            "description": "Glide adapter for Symfony",
+            "homepage": "http://glide.thephpleague.com",
+            "support": {
+                "issues": "https://github.com/thephpleague/glide-symfony/issues",
+                "source": "https://github.com/thephpleague/glide-symfony/tree/master"
+            },
+            "time": "2020-03-05T12:38:10+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -6831,6 +7411,134 @@
                 }
             ],
             "time": "2021-10-26T09:30:15+00:00"
+        },
+        {
+            "name": "thomaswelton/gravatarlib",
+            "version": "0.1.0",
+            "target-dir": "thomaswelton/GravatarLib",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thomaswelton/gravatarlib.git",
+                "reference": "8a4e829c53ca2abb51ef2e514f696938a9bdbd0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thomaswelton/gravatarlib/zipball/8a4e829c53ca2abb51ef2e514f696938a9bdbd0c",
+                "reference": "8a4e829c53ca2abb51ef2e514f696938a9bdbd0c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "twig/twig": ">=1.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "thomaswelton\\GravatarLib\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Thompson",
+                    "email": "sam@emberlabs.org"
+                },
+                {
+                    "name": "Damian Bushong",
+                    "email": "damian@emberlabs.org"
+                },
+                {
+                    "name": "Thomas Welton",
+                    "email": "thomaswelton@me.com",
+                    "homepage": "https://github.com/thomaswelton",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A lightweight PHP 5.3 OOP library providing easy gravatar integration.",
+            "keywords": [
+                "gravatar",
+                "templating",
+                "twig"
+            ],
+            "support": {
+                "issues": "https://github.com/thomaswelton/gravatarlib/issues",
+                "source": "https://github.com/thomaswelton/gravatarlib/tree/master"
+            },
+            "time": "2014-03-02T18:29:18+00:00"
+        },
+        {
+            "name": "thomaswelton/laravel-gravatar",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thomaswelton/laravel-gravatar.git",
+                "reference": "bdfa24847a5602aa9273967c8b6d5e3ec6860ed1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thomaswelton/laravel-gravatar/zipball/bdfa24847a5602aa9273967c8b6d5e3ec6860ed1",
+                "reference": "bdfa24847a5602aa9273967c8b6d5e3ec6860ed1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0|^6.0|^7.0|^8.0",
+                "php": ">=5.4.0",
+                "thomaswelton/gravatarlib": "0.1.x"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Thomaswelton\\LaravelGravatar\\LaravelGravatarServiceProvider"
+                    ],
+                    "aliases": {
+                        "Gravatar": "Thomaswelton\\LaravelGravatar\\Facades\\Gravatar"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Thomaswelton\\LaravelGravatar\\": "src/",
+                    "Thomaswelton\\Tests\\LaravelGravatar\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ThomasWelton",
+                    "email": "thomaswelton@me.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Antoine Augusti",
+                    "email": "antoine.augusti@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel 5 Gravatar helper",
+            "homepage": "https://github.com/thomaswelton/laravel-gravatar",
+            "keywords": [
+                "gravatar",
+                "laravel",
+                "laravel5"
+            ],
+            "support": {
+                "issues": "https://github.com/thomaswelton/laravel-gravatar/issues",
+                "source": "https://github.com/thomaswelton/laravel-gravatar/tree/1.3.0"
+            },
+            "time": "2020-10-12T14:45:23+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
