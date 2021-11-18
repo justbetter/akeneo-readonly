@@ -2,23 +2,30 @@
 
 namespace App\Actions\Product;
 
+use App\Actions\Attribute\UpsertAttribute;
 use App\Exceptions\NotSupportedException;
 use App\Models\Product;
 use JustBetter\Akeneo\Models\Product as AkeneoProduct;
 
 class UpsertProduct
 {
-    public function upsert(AkeneoProduct $product): Product
+    public function upsert(AkeneoProduct $akeneoProduct, bool $createAttributes = true): ?Product
     {
-        $identifier = $product[$product->primaryKey];
+        $identifier = $akeneoProduct[$akeneoProduct->primaryKey];
 
-        throw_if($product['parent'] !== null,
+        throw_if($akeneoProduct['parent'] !== null,
             NotSupportedException::class,
             "Productmodels not supported");
 
-        return Product::updateOrCreate(
+        $product = Product::updateOrCreate(
             ['identifier' => $identifier],
-            $product->toArray()
+            $akeneoProduct->toArray()
         );
+
+        if ($createAttributes) {
+            app(UpsertAttribute::class)->upsert($this->akeneoProduct, $product);
+        }
+
+        return $product;
     }
 }

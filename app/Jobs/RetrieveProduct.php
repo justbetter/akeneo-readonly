@@ -28,8 +28,7 @@ class RetrieveProduct implements ShouldQueue, ShouldBeUnique
             $this->akeneoProduct = AkeneoProduct::find($this->identifier);
         }
 
-        $product = app(UpsertProduct::class)->upsert($this->akeneoProduct);
-        app(UpsertAttribute::class)->upsert($this->akeneoProduct, $product);
+        app(UpsertProduct::class)->upsert($this->akeneoProduct);
     }
 
     public function uniqueId(): string
