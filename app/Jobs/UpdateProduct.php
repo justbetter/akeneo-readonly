@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Actions\Product\UpsertProduct;
+use App\Models\Product;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,23 +11,29 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use JustBetter\Akeneo\Models\Product as AkeneoProduct;
 
-class RetrieveProduct implements ShouldQueue, ShouldBeUnique
+class UpdateProduct implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function __construct(
-        protected string $identifier,
-        protected ?AkeneoProduct $akeneoProduct = null
-    ) {
+    public function __construct(protected string $identifier)
+    {
     }
 
     public function handle()
     {
-        if ($this->akeneoProduct === null) {
-            $this->akeneoProduct = AkeneoProduct::find($this->identifier);
+        $akeneoProduct = AkeneoProduct::find($this->identifier);
+
+        if ($akeneoProduct === null) {
+            $this->deleteProduct();
+            return;
         }
 
-        app(UpsertProduct::class)->upsert($this->akeneoProduct);
+        RetrieveProduct::dispatch($this->identifier, $akeneoProduct);
+    }
+
+    protected function deleteProduct()
+    {
+        optional(Product::where('identifier', $this->identifier)->first())->delete();
     }
 
     public function uniqueId(): string

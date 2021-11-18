@@ -2,39 +2,32 @@
 
 namespace App\Console;
 
+use App\Console\Commands\RetrieveProduct;
+use App\Console\Commands\RetrieveProducts;
+use App\Console\Commands\UpdateProducts;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
     protected $commands = [
-        //
+        RetrieveProduct::class,
+        RetrieveProducts::class,
+        UpdateProducts::class
     ];
 
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command(RetrieveProducts::class)->weekly();
+        $schedule->command(UpdateProducts::class)->weekly();
+
+        // TOOD: snapshot
+        // TOOD: batch prune
     }
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

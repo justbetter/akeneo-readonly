@@ -23,7 +23,7 @@ class UpsertProduct
         );
 
         if ($createAttributes) {
-            app(UpsertAttribute::class)->upsert($this->akeneoProduct, $product);
+            app(UpsertAttribute::class)->upsert($akeneoProduct, $product);
         }
 
         return $product;
