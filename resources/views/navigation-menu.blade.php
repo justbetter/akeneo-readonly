@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('products') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <x-header-logo class="block h-9 w-auto" />
                     </a>
                 </div>
 
@@ -53,6 +53,12 @@
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
+                                </x-jet-dropdown-link>
+                            @endif
+
+                            @if (auth()->user()->admin)
+                                <x-jet-dropdown-link href="{{ route('filament.dashboard') }}">
+                                    {{ __('Admin') }}
                                 </x-jet-dropdown-link>
                             @endif
 

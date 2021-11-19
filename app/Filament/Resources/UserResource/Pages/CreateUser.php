@@ -12,6 +12,5 @@ class CreateUser extends CreateRecord
     public function beforeCreate()
     {
         $this->record['password'] = bcrypt($this->record['password']);
-        dd($this->record);
     }
 }
