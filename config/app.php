@@ -235,4 +235,5 @@ return [
 
     ],
 
+    'channel' => env('AKENEO_CHANNEL', 'ecommerce')
 ];

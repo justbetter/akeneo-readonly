@@ -17,6 +17,7 @@ class AttributeConfig extends Model
 
     public function scopeGrid($builder)
     {
-        return $builder->where('grid', true);
+        return $builder->where('grid', true)
+            ->orderBy('sort');
     }
 }

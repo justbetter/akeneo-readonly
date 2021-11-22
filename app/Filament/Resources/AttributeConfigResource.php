@@ -22,6 +22,9 @@ class AttributeConfigResource extends Resource
                 TextInput::make('record.code')
                     ->disabled(),
 
+                TextInput::make('record.sort')
+                    ->numeric(),
+
                 Checkbox::make('record.visible')
                     ->helpMessage('Visible on the detail page'),
 
@@ -35,7 +38,8 @@ class AttributeConfigResource extends Resource
     {
         return $table
             ->columns([
-                Columns\Text::make('code'),
+                Columns\Text::make('code')
+                    ->searchable(),
 
                 Columns\Text::make('group')
                     ->getValueUsing(fn($attr) => $attr->data['group']),
@@ -43,9 +47,13 @@ class AttributeConfigResource extends Resource
                 Columns\Text::make('type')
                     ->getValueUsing(fn($attr) => $attr->data['type']),
 
-                Boolean::make('visible'),
+                Boolean::make('visible')
+                    ->sortable(),
 
-                Boolean::make('grid'),
+                Boolean::make('grid')
+                    ->sortable(),
+
+                Columns\Text::make('sort')
             ]);
     }
 
