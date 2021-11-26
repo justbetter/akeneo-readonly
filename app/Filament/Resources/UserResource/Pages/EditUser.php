@@ -13,6 +13,8 @@ class EditUser extends EditRecord
     {
         if ($this->record->password === null) {
             $this->record->password = $this->record->getRawOriginal('password');
+        } else {
+            $this->record->password = bcrypt($this->record->password);
         }
     }
 }
