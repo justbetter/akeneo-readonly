@@ -1783,12 +1783,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/justbetter/laravel-akeneo.git",
-                "reference": "51fbf5e11065f9afd0ff62e74d8143494f524c88"
+                "reference": "486e3bf921ad776f7f73afe48802b2781b7d112c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justbetter/laravel-akeneo/zipball/51fbf5e11065f9afd0ff62e74d8143494f524c88",
-                "reference": "51fbf5e11065f9afd0ff62e74d8143494f524c88",
+                "url": "https://api.github.com/repos/justbetter/laravel-akeneo/zipball/486e3bf921ad776f7f73afe48802b2781b7d112c",
+                "reference": "486e3bf921ad776f7f73afe48802b2781b7d112c",
                 "shasum": ""
             },
             "require": {
@@ -1855,7 +1855,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-11-16T08:17:01+00:00"
+            "time": "2021-11-22T10:21:37+00:00"
         },
         {
             "name": "laravel/fortify",

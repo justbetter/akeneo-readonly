@@ -40,6 +40,12 @@ class ProductTable extends DataTableComponent
             $column = Column::make($this->getLabel($attribute->code))
                 ->format(function ($value, $column, $row) use ($attribute, $locale) {
 
+                    $type = $attribute->data['type'];
+
+                    if ($type == 'pim_catalog_identifier') {
+                        return $row['identifier'];
+                    }
+
                     $attr = $row->attributes()->where('code', $attribute->code)->first();
 
                     if ($attr === null) {
@@ -48,7 +54,7 @@ class ProductTable extends DataTableComponent
 
                     $data = $this->getLocalizedAttribute($attr->value, $locale)['data'];
 
-                    if ($attribute->data['type'] == 'pim_catalog_image') {
+                    if ($type == 'pim_catalog_image') {
                         return view('tables.cells.image', ['url' => $this->getImageUrl($attr)]);
                     }
 
