@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Listeners\ProductCreated;
-use App\Listeners\ProductUpdated as ProductUpdatedEvent;
+use JustBetter\Akeneo\Events\ProductUpdated as ProductUpdatedEvent;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use JustBetter\Akeneo\Events\ProductCreated as ProductCreatedEvent;
 
