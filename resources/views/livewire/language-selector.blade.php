@@ -4,7 +4,7 @@
             class="cursor-pointer transition-all duration-100 @if (!$this->isSelected($language)) opacity-50 @endif"
             wire:click="setLocale('{{ $language }}')"
         >
-            {{ flag(explode('_', $language)[1], 'w-12') }}
+            {{ flag(strtolower(explode('_', $language)[1]), 'w-12') }}
         </span>
     @endforeach
 </div>
