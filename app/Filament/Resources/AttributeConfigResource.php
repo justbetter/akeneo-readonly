@@ -31,6 +31,11 @@ class AttributeConfigResource extends Resource
                 Checkbox::make('record.grid')
                     ->helpMessage('Visible in the main grid'),
 
+                Checkbox::make('record.title')
+                    ->helpMessage('Use as title'),
+
+                Checkbox::make('record.description')
+                    ->helpMessage('Use as description'),
             ]);
     }
 
@@ -51,6 +56,12 @@ class AttributeConfigResource extends Resource
                     ->sortable(),
 
                 Boolean::make('grid')
+                    ->sortable(),
+
+                Boolean::make('title')
+                    ->sortable(),
+
+                Boolean::make('description')
                     ->sortable(),
 
                 Columns\Text::make('sort')

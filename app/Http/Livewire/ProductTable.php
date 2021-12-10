@@ -5,12 +5,19 @@ namespace App\Http\Livewire;
 use App\Models\Attribute;
 use App\Models\AttributeConfig;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class ProductTable extends DataTableComponent
 {
+    protected array $searchableTypes = [
+        'pim_catalog_identifier',
+        'pim_catalog_text',
+        'pim_catalog_simpleselect'
+    ];
+
     protected $listeners = [
         'update-locale' => '$refresh'
     ];
@@ -37,8 +44,8 @@ class ProductTable extends DataTableComponent
         /** @var Attribute $attribute */
         foreach ($attributes as $attribute) {
 
-            $column = Column::make($this->getLabel($attribute->code))
-                ->format(function ($value, $column, $row) use ($attribute, $locale) {
+            $column = Column::make($this->getLabel($attribute->code), $attribute->code)
+                ->format(function ($value, $column, $row) use ($attribute, $locale, &$searchable) {
 
                     $type = $attribute->data['type'];
 
@@ -63,10 +70,19 @@ class ProductTable extends DataTableComponent
                         : $data;
                 });
 
+            if (in_array($attribute->data['type'], $this->searchableTypes)) {
+                $column->searchable([$this, 'search']);
+            }
+
             $columns[] = $column;
         }
 
         return $columns;
+    }
+
+    public function search(Builder $query, string $search)
+    {
+        return $query->where('identifier', 'LIKE', "%{$search}%");
     }
 
     public function query()
@@ -122,9 +138,8 @@ class ProductTable extends DataTableComponent
         return $baseUrl . '/media/cache/thumbnail_small/' . $image['data'];
     }
 
-    // TODO
-    //public function getTableRowUrl($row): string
-    //{
-    //    //return route('my.edit.route', $row);
-    //}
+    public function getTableRowUrl(Product $product): string
+    {
+        return route('product.detail', $product->identifier);
+    }
 }

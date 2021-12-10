@@ -26,4 +26,9 @@ class Attribute extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function config(): BelongsTo
+    {
+        return $this->belongsTo(AttributeConfig::class, 'code', 'code');
+    }
 }

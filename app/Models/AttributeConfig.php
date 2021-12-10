@@ -20,4 +20,14 @@ class AttributeConfig extends Model
         return $builder->where('grid', true)
             ->orderBy('sort');
     }
+
+    public function scopeTitle($builder)
+    {
+        return $builder->where('title', true);
+    }
+
+    public function scopeDescription($builder)
+    {
+        return $builder->where('description', true);
+    }
 }
