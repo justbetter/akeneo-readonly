@@ -9,11 +9,11 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-         User::create([
-             'email' => 'admin@admin.com',
-             'name' => 'Administrator',
-             'password' => bcrypt('VerySecurePassword'),
-             'admin' => true
-         ]);
+        User::create([
+            'email' => 'admin@admin.com',
+            'name' => 'Administrator',
+            'password' => bcrypt('VerySecurePassword'),
+            'admin' => true,
+        ]);
     }
 }

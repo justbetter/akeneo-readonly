@@ -12,6 +12,6 @@ class ProductUpdated
     {
         $akeneoProduct = new Product($event->event['data']['resource']);
 
-         app(UpsertProduct::class)->upsert($akeneoProduct);
+        app(UpsertProduct::class)->upsert($akeneoProduct);
     }
 }

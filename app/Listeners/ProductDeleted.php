@@ -12,6 +12,6 @@ class ProductDeleted
     {
         $akeneoProduct = new Product($event->event['data']['resource']);
 
-         app(DeleteProduct::class)->delete($akeneoProduct[$akeneoProduct->primaryKey]);
+        app(DeleteProduct::class)->delete($akeneoProduct[$akeneoProduct->primaryKey]);
     }
 }

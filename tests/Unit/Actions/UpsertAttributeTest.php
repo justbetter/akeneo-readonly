@@ -51,16 +51,16 @@ class UpsertAttributeTest extends TestCase
                 [
                     'data' => 'testing3',
                     'scope' => null,
-                    'locale' => null
-                ]
+                    'locale' => null,
+                ],
             ],
             'attribute2' => [
                 [
                     'data' => 'testing2',
                     'scope' => 'ecommerce',
-                    'locale' => 'nl_NL'
-                ]
-            ]
+                    'locale' => 'nl_NL',
+                ],
+            ],
         ];
 
         app(UpsertAttribute::class)->upsert($akeneoProduct, $this->product);
@@ -85,18 +85,17 @@ class UpsertAttributeTest extends TestCase
                     [
                         'data' => 'testing',
                         'scope' => null,
-                        'locale' => null
-                    ]
+                        'locale' => null,
+                    ],
                 ],
                 'attribute2' => [
                     [
                         'data' => 'testing2',
                         'scope' => 'ecommerce',
-                        'locale' => 'nl_NL'
-                    ]
-                ]
-            ]
+                        'locale' => 'nl_NL',
+                    ],
+                ],
+            ],
         ]);
     }
-
 }

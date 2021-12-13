@@ -13,13 +13,13 @@ class Attribute extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'value' => 'array'
+        'value' => 'array',
     ];
 
     protected $fillable = [
         'product_id',
         'code',
-        'value'
+        'value',
     ];
 
     public function product(): BelongsTo

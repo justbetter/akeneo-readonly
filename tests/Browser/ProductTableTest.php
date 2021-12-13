@@ -22,7 +22,7 @@ class ProductTableTest extends DuskTestCase
     public function testTable()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs( User::first());
+            $browser->loginAs(User::first());
 
             $browser->visit('/products')
                     ->assertSee('Showing 1 to 10 of 50 results');

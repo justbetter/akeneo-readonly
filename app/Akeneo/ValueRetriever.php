@@ -12,7 +12,7 @@ abstract class ValueRetriever
     const TYPES = [
         Simple::class,
         SimpleSelect::class,
-        MultiSelect::class
+        MultiSelect::class,
     ];
 
     public static function retrieve(

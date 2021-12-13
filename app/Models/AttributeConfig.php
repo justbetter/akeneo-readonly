@@ -12,7 +12,7 @@ class AttributeConfig extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'data' => 'array'
+        'data' => 'array',
     ];
 
     public function scopeGrid($builder)

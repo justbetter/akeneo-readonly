@@ -10,7 +10,7 @@ class Simple extends AbstractType
             'pim_catalog_text',
             'pim_catalog_textarea',
             'pim_catalog_boolean',
-            'pim_catalog_number'
+            'pim_catalog_number',
         ];
     }
 

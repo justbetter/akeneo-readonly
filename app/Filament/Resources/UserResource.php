@@ -29,7 +29,7 @@ class UserResource extends Resource
                 Checkbox::make('record.admin'),
 
                 TextInput::make('password')
-                    ->password()
+                    ->password(),
 
             ]);
     }
@@ -41,7 +41,7 @@ class UserResource extends Resource
                 Text::make('name'),
                 Text::make('email'),
                 Boolean::make('admin')
-                    ->label('Administrator?')
+                    ->label('Administrator?'),
             ])
             ->filters([
                 //

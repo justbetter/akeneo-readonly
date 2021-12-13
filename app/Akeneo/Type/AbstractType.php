@@ -4,7 +4,7 @@ namespace App\Akeneo\Type;
 
 abstract class AbstractType
 {
-    public abstract function retrieve(
+    abstract public function retrieve(
         string $attributeCode,
         array $data,
         ?string $scope,
@@ -16,5 +16,5 @@ abstract class AbstractType
         return in_array($type, $this->types());
     }
 
-    public abstract function types(): array;
+    abstract public function types(): array;
 }

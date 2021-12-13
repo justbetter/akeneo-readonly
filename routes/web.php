@@ -8,7 +8,6 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
     Route::get('/products', function () {
         return view('products');
     })->name('products');
@@ -16,5 +15,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/product/{identifier}', function (Product $product) {
         return view('product', ['product' => $product]);
     })->name('product.detail');
-
 });

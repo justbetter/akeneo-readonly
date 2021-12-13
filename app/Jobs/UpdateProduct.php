@@ -25,6 +25,7 @@ class UpdateProduct implements ShouldQueue, ShouldBeUnique
 
         if ($akeneoProduct === null) {
             $this->deleteProduct();
+
             return;
         }
 

@@ -12,7 +12,7 @@ class Header extends Component
     public Product $product;
 
     protected $listeners = [
-        'update-locale' => '$refresh'
+        'update-locale' => '$refresh',
     ];
 
     public function render()
@@ -50,7 +50,7 @@ class Header extends Component
             ->first();
 
         if ($attribute === null) {
-            return 'Product doesn\'t have ' . $attributeConfig->code;
+            return 'Product doesn\'t have '.$attributeConfig->code;
         }
 
         $userLocale = auth()->user()->preferred_locale ?? '';
@@ -66,5 +66,4 @@ class Header extends Component
 
         return $value[$userLocale] ?? '';
     }
-
 }

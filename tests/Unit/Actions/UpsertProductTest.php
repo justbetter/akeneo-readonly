@@ -7,7 +7,6 @@ use App\Exceptions\NotSupportedException;
 use App\Models\Attribute;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Bus;
 use JustBetter\Akeneo\Models\Product as AkeneoProduct;
 use Tests\TestCase;
 
@@ -68,17 +67,17 @@ class UpsertProductTest extends TestCase
                     [
                         'data' => '::some_data::',
                         'scope' => null,
-                        'locale' => null
-                    ]
+                        'locale' => null,
+                    ],
                 ],
                 '::another_attribute_code::' => [
                     [
                         'data' => '::some_data::',
                         'scope' => null,
-                        'locale' => null
-                    ]
+                        'locale' => null,
+                    ],
                 ],
-            ]
+            ],
         ];
 
         if ($withParent) {

@@ -13,7 +13,7 @@ class ProductFactory extends Factory
             'enabled' => $this->faker->boolean,
             'family' => $this->faker->word,
             'categories' => [],
-            'groups' => []
+            'groups' => [],
         ];
     }
 }
