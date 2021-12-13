@@ -11,7 +11,7 @@ class MultiSelect extends AbstractType
     public function types(): array
     {
         return [
-            'pim_catalog_multiselect'
+            'pim_catalog_multiselect',
         ];
     }
 
@@ -29,17 +29,13 @@ class MultiSelect extends AbstractType
         $labels = new Collection();
 
         foreach ($selectedOptions['data'] as $selectedOption) {
-
             foreach ($this->getLabels($attributeCode, $selectedOption) as $localeLabel => $label) {
-
                 if ($labels->has($localeLabel)) {
                     $labels[$localeLabel] = array_merge($labels[$localeLabel], [$label]);
                 } else {
                     $labels[$localeLabel] = [$label];
                 }
-
             }
-
         }
 
         return $labels->toArray();
@@ -48,6 +44,6 @@ class MultiSelect extends AbstractType
     protected function getLabels(string $attributeCode, string $optionCode)
     {
         return Cache::rememberForever("labels.$attributeCode.$optionCode",
-            fn() => Akeneo::getAttributeOptionApi()->get($attributeCode, $optionCode)['labels']);
+            fn () => Akeneo::getAttributeOptionApi()->get($attributeCode, $optionCode)['labels']);
     }
 }

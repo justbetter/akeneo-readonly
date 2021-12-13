@@ -29,10 +29,9 @@ class Images extends Component
         return $this->product
             ->attributes()
             ->whereIn('code', $imageAttributes->pluck('code'))
-            ->select(['code','value'])
+            ->select(['code', 'value'])
             ->get()
             ->map(function (Attribute $attribute) use ($imageAttributes) {
-
                 $config = $imageAttributes->where('code', '=', $attribute->code)->first();
 
                 $scope = $config->data['scopable'] ? config('app.channel') : null;
@@ -46,8 +45,8 @@ class Images extends Component
                 $baseUrl = config('akeneo.connections.default.url');
 
                 return [
-                    'thumb' => $baseUrl . '/media/cache/thumbnail_small/' . $image['data'],
-                    'full' => $baseUrl . '/media/cache/preview/' . $image['data']
+                    'thumb' => $baseUrl.'/media/cache/thumbnail_small/'.$image['data'],
+                    'full' => $baseUrl.'/media/cache/preview/'.$image['data'],
                 ];
             })
             ->toArray();

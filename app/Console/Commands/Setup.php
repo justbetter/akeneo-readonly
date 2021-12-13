@@ -14,18 +14,18 @@ class Setup extends Command
 
     public function handle()
     {
-        $this->info("Retrieving all attributes from Akeneo");
+        $this->info('Retrieving all attributes from Akeneo');
 
         RetrieveAttributeConfigs::dispatchSync();
 
-        $this->info("Attributes retrieved!");
+        $this->info('Attributes retrieved!');
 
-        $this->info("Dispatching jobs to retrieve products");
+        $this->info('Dispatching jobs to retrieve products');
 
         RetrieveProducts::dispatch();
 
-        $this->info("Done! Check horizon for the progress");
-        
+        $this->info('Done! Check horizon for the progress');
+
         return Command::SUCCESS;
     }
 }

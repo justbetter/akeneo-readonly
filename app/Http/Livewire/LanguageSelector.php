@@ -16,7 +16,7 @@ class LanguageSelector extends Component
     public function getLanguages(): array
     {
         return Cache::rememberForever('locales',
-            fn() => Channel::find(config('app.channel'))['locales']
+            fn () => Channel::find(config('app.channel'))['locales']
         );
     }
 

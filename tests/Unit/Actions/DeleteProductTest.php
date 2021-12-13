@@ -16,7 +16,7 @@ class DeleteProductTest extends TestCase
         $identifier = '::identifier::';
 
         Product::factory()->createOne([
-            'identifier' => $identifier
+            'identifier' => $identifier,
         ]);
 
         $this->assertDatabaseCount(Product::class, 1);

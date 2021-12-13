@@ -19,6 +19,6 @@ class UpdateProducts implements ShouldQueue, ShouldBeUnique
         Product::query()
             ->select(['identifier'])
             ->get()
-            ->each(fn(Product $product) => UpdateProduct::dispatch($product['identifier']));
+            ->each(fn (Product $product) => UpdateProduct::dispatch($product['identifier']));
     }
 }

@@ -18,7 +18,7 @@ class RetrieveProducts implements ShouldQueue, ShouldBeUnique
     {
         Product::lazy()
             ->each(
-                fn(Product $product) => RetrieveProduct::dispatch($product[$product->primaryKey], $product)
+                fn (Product $product) => RetrieveProduct::dispatch($product[$product->primaryKey], $product)
             );
     }
 }

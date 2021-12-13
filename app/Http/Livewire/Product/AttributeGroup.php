@@ -11,7 +11,7 @@ use Livewire\Component;
 class AttributeGroup extends Component
 {
     protected $listeners = [
-        'update-locale' => '$refresh'
+        'update-locale' => '$refresh',
     ];
 
     public Product $product;

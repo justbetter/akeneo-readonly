@@ -4,14 +4,13 @@ namespace App\Akeneo\Type;
 
 use Illuminate\Support\Facades\Cache;
 use JustBetter\Akeneo\Facades\Akeneo;
-use JustBetter\Akeneo\Models\Attribute;
 
 class SimpleSelect extends AbstractType
 {
     public function types(): array
     {
         return [
-            'pim_catalog_simpleselect'
+            'pim_catalog_simpleselect',
         ];
     }
 
@@ -32,6 +31,6 @@ class SimpleSelect extends AbstractType
     protected function getLabels(string $attributeCode, string $optionCode)
     {
         return Cache::rememberForever("labels.$attributeCode.$optionCode",
-            fn() => Akeneo::getAttributeOptionApi()->get($attributeCode, $optionCode)['labels']);
+            fn () => Akeneo::getAttributeOptionApi()->get($attributeCode, $optionCode)['labels']);
     }
 }

@@ -13,7 +13,7 @@ class Product extends Model
 
     protected $casts = [
         'categories' => 'array',
-        'groups' => 'array'
+        'groups' => 'array',
     ];
 
     protected $fillable = [
@@ -23,7 +23,7 @@ class Product extends Model
         'family',
         'categories',
         'groups',
-        'parent'
+        'parent',
     ];
 
     public static function boot()
@@ -52,8 +52,8 @@ class Product extends Model
             ->whereIn('code', $attributeCodes)
             ->select(['code', 'data'])
             ->get()
-            ->sortByDesc(fn(AttributeConfig $config) => $config->data['sort_order'])
-            ->mapWithKeys(fn(AttributeConfig $config) => [$config->data['group'] => $config->data['group_labels']]);
+            ->sortByDesc(fn (AttributeConfig $config) => $config->data['sort_order'])
+            ->mapWithKeys(fn (AttributeConfig $config) => [$config->data['group'] => $config->data['group_labels']]);
     }
 
     public function getAttributesPerGroup(): array
@@ -69,11 +69,11 @@ class Product extends Model
             ->select(['code', 'data'])
             ->where('visible', true)
             ->get()
-            ->sortByDesc(fn(AttributeConfig $config) => $config->data['sort_order'])
-            ->map(fn(AttributeConfig $config) => [
+            ->sortByDesc(fn (AttributeConfig $config) => $config->data['sort_order'])
+            ->map(fn (AttributeConfig $config) => [
                 'group' => $config->data['group'],
                 'code' => $config->code,
-                'labels' => $config->data['labels']
+                'labels' => $config->data['labels'],
             ])
             ->groupBy('group')
             ->toArray();

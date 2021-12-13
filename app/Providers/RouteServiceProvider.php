@@ -49,7 +49,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
 
-        Route::bind('identifier', function($value) {
+        Route::bind('identifier', function ($value) {
             return Product::where('identifier', $value)->firstOrFail();
         });
     }

@@ -47,10 +47,10 @@ class AttributeConfigResource extends Resource
                     ->searchable(),
 
                 Columns\Text::make('group')
-                    ->getValueUsing(fn($attr) => $attr->data['group']),
+                    ->getValueUsing(fn ($attr) => $attr->data['group']),
 
                 Columns\Text::make('type')
-                    ->getValueUsing(fn($attr) => $attr->data['type']),
+                    ->getValueUsing(fn ($attr) => $attr->data['type']),
 
                 Boolean::make('visible')
                     ->sortable(),
@@ -64,7 +64,7 @@ class AttributeConfigResource extends Resource
                 Boolean::make('description')
                     ->sortable(),
 
-                Columns\Text::make('sort')
+                Columns\Text::make('sort'),
             ]);
     }
 
@@ -76,5 +76,4 @@ class AttributeConfigResource extends Resource
             Pages\EditAttributeConfig::routeTo('/{record}/edit', 'edit'),
         ];
     }
-
 }
