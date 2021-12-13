@@ -29,7 +29,7 @@ class User extends Authenticatable implements FilamentUser
         'email',
         'password',
         'admin',
-        'preferred_locale'
+        'preferred_locale',
     ];
 
     protected $hidden = [
@@ -41,7 +41,7 @@ class User extends Authenticatable implements FilamentUser
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'admin' => 'boolean'
+        'admin' => 'boolean',
     ];
 
     protected $appends = [

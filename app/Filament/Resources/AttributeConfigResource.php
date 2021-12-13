@@ -31,6 +31,11 @@ class AttributeConfigResource extends Resource
                 Checkbox::make('record.grid')
                     ->helpMessage('Visible in the main grid'),
 
+                Checkbox::make('record.title')
+                    ->helpMessage('Use as title'),
+
+                Checkbox::make('record.description')
+                    ->helpMessage('Use as description'),
             ]);
     }
 
@@ -42,10 +47,10 @@ class AttributeConfigResource extends Resource
                     ->searchable(),
 
                 Columns\Text::make('group')
-                    ->getValueUsing(fn($attr) => $attr->data['group']),
+                    ->getValueUsing(fn ($attr) => $attr->data['group']),
 
                 Columns\Text::make('type')
-                    ->getValueUsing(fn($attr) => $attr->data['type']),
+                    ->getValueUsing(fn ($attr) => $attr->data['type']),
 
                 Boolean::make('visible')
                     ->sortable(),
@@ -53,7 +58,13 @@ class AttributeConfigResource extends Resource
                 Boolean::make('grid')
                     ->sortable(),
 
-                Columns\Text::make('sort')
+                Boolean::make('title')
+                    ->sortable(),
+
+                Boolean::make('description')
+                    ->sortable(),
+
+                Columns\Text::make('sort'),
             ]);
     }
 
@@ -65,5 +76,4 @@ class AttributeConfigResource extends Resource
             Pages\EditAttributeConfig::routeTo('/{record}/edit', 'edit'),
         ];
     }
-
 }

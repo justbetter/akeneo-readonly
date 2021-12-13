@@ -235,5 +235,5 @@ return [
 
     ],
 
-    'channel' => env('AKENEO_CHANNEL', 'ecommerce')
+    'channel' => env('AKENEO_CHANNEL', 'ecommerce'),
 ];

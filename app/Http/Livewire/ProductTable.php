@@ -5,14 +5,21 @@ namespace App\Http\Livewire;
 use App\Models\Attribute;
 use App\Models\AttributeConfig;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class ProductTable extends DataTableComponent
 {
+    protected array $searchableTypes = [
+        'pim_catalog_identifier',
+        'pim_catalog_text',
+        'pim_catalog_simpleselect',
+    ];
+
     protected $listeners = [
-        'update-locale' => '$refresh'
+        'update-locale' => '$refresh',
     ];
 
     public string $defaultSortColumn = 'identifier';
@@ -24,7 +31,7 @@ class ProductTable extends DataTableComponent
                 ->format(function ($value) {
                     return view('tables.cells.boolean',
                         [
-                            'boolean' => $value
+                            'boolean' => $value,
                         ]
                     );
                 }),
@@ -36,10 +43,8 @@ class ProductTable extends DataTableComponent
 
         /** @var Attribute $attribute */
         foreach ($attributes as $attribute) {
-
-            $column = Column::make($this->getLabel($attribute->code))
-                ->format(function ($value, $column, $row) use ($attribute, $locale) {
-
+            $column = Column::make($this->getLabel($attribute->code), $attribute->code)
+                ->format(function ($value, $column, $row) use ($attribute, $locale, &$searchable) {
                     $type = $attribute->data['type'];
 
                     if ($type == 'pim_catalog_identifier') {
@@ -63,10 +68,19 @@ class ProductTable extends DataTableComponent
                         : $data;
                 });
 
+            if (in_array($attribute->data['type'], $this->searchableTypes)) {
+                $column->searchable([$this, 'search']);
+            }
+
             $columns[] = $column;
         }
 
         return $columns;
+    }
+
+    public function search(Builder $query, string $search)
+    {
+        return $query->where('identifier', 'LIKE', "%{$search}%");
     }
 
     public function query()
@@ -95,8 +109,8 @@ class ProductTable extends DataTableComponent
 
         return match ($type) {
             'pim_catalog_multiselect' => implode(', ', $data),
-            'pim_catalog_price_collection' => $data['currency'] . ' ' . $data['amount'],
-            'pim_catalog_metric' => $data['amount'] . ' ' . $data['unit'],
+            'pim_catalog_price_collection' => $data['currency'].' '.$data['amount'],
+            'pim_catalog_metric' => $data['amount'].' '.$data['unit'],
             default => json_encode($data)
         };
     }
@@ -119,12 +133,11 @@ class ProductTable extends DataTableComponent
 
         $image = $this->getLocalizedAttribute($attribute->value);
 
-        return $baseUrl . '/media/cache/thumbnail_small/' . $image['data'];
+        return $baseUrl.'/media/cache/thumbnail_small/'.$image['data'];
     }
 
-    // TODO
-    //public function getTableRowUrl($row): string
-    //{
-    //    //return route('my.edit.route', $row);
-    //}
+    public function getTableRowUrl(Product $product): string
+    {
+        return route('product.detail', $product->identifier);
+    }
 }

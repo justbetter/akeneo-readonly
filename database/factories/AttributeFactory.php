@@ -10,12 +10,12 @@ class AttributeFactory extends Factory
 {
     const SCOPES = [
         'ecommerce',
-        'print'
+        'print',
     ];
 
     const LOCALES = [
         'en_US',
-        'nl_NL'
+        'nl_NL',
     ];
 
     const GROUPS = [
@@ -23,7 +23,30 @@ class AttributeFactory extends Factory
         'logistics',
         'measurements',
         'technical',
-        'other'
+        'other',
+    ];
+
+    const GROUP_LABELS = [
+        'general' => [
+            'nl_NL' => 'Algemeen',
+            'en_US' => 'General',
+        ],
+        'logistics' => [
+            'nl_NL' => 'Logistiek',
+            'en_US' => 'Logistics',
+        ],
+        'measurements' => [
+            'nl_NL' => 'Afmetingen',
+            'en_US' => 'Measurements',
+        ],
+        'technical' => [
+            'nl_NL' => 'Technisch',
+            'en_US' => 'Technical',
+        ],
+        'other' => [
+            'nl_NL' => 'Overig',
+            'en_US' => 'Other',
+        ],
     ];
 
     const TYPES = [
@@ -34,7 +57,7 @@ class AttributeFactory extends Factory
         'pim_catalog_simpleselect',
         'pim_catalog_multiselect',
         'pim_catalog_price_collection',
-        'pim_catalog_metric'
+        'pim_catalog_metric',
     ];
 
     const CODES = [
@@ -46,7 +69,7 @@ class AttributeFactory extends Factory
         'attribute_6',
         'attribute_7',
         'attribute_8',
-        'attribute_9'
+        'attribute_9',
     ];
 
     public function definition()
@@ -57,7 +80,7 @@ class AttributeFactory extends Factory
 
         return [
             'code' => $code,
-            'value' => $this->getValues($config->data['type'])
+            'value' => $this->getValues($config->data['type']),
         ];
     }
 
@@ -66,20 +89,24 @@ class AttributeFactory extends Factory
         $config = AttributeConfig::where('code', $code)->first();
 
         if ($config === null) {
+            $group = Arr::random(self::GROUPS);
+
             $config = AttributeConfig::create([
                 'code' => $code,
                 'data' => [
                     'type' => Arr::random(self::TYPES),
-                    'group' => Arr::random(self::GROUPS),
+                    'group' => $group,
+                    'group_labels' => self::GROUP_LABELS[$group],
                     'localizable' => random_int(0, 1) == 0,
                     'scopable' => random_int(0, 1) == 0,
+                    'sort_order' => random_int(0, 10),
                     'labels' => [
-                        'nl_NL' => 'NL ' . $code,
-                        'en_US' => 'EN ' . $code
-                    ]
+                        'nl_NL' => 'NL '.$code,
+                        'en_US' => 'EN '.$code,
+                    ],
                 ],
                 'grid' => random_int(0, 1) == 0,
-                'visible' => random_int(0, 10) < 8
+                'visible' => random_int(0, 10) < 8,
             ]);
         }
 
@@ -92,13 +119,11 @@ class AttributeFactory extends Factory
 
         foreach (self::SCOPES as $scope) {
             foreach (self::LOCALES as $locale) {
-
                 $values[] = [
                     'scope' => random_int(0, 1) == 0 ? $scope : null,
                     'locale' => random_int(0, 1) == 0 ? $locale : null,
-                    'data' => $this->randomValue($type)
+                    'data' => $this->randomValue($type),
                 ];
-
             }
         }
 
@@ -116,11 +141,11 @@ class AttributeFactory extends Factory
             'pim_catalog_multiselect' => $this->faker->words(3, false),
             'pim_catalog_price_collection' => [
                 'currency' => 'EUR',
-                'amount' => $this->faker->randomFloat(2, 0, 200)
+                'amount' => $this->faker->randomFloat(2, 0, 200),
             ],
             'pim_catalog_metric' => [
                 'unit' => Arr::random(['gram', 'kilogram', 'meter', 'kilometer']),
-                'amount' => $this->faker->randomFloat(2, 0, 200)
+                'amount' => $this->faker->randomFloat(2, 0, 200),
             ]
         };
     }

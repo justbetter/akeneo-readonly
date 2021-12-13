@@ -15,7 +15,7 @@ class UpsertProduct
 
         throw_if($akeneoProduct['parent'] !== null,
             NotSupportedException::class,
-            "Productmodels not supported");
+            'Productmodels not supported');
 
         $product = Product::updateOrCreate(
             ['identifier' => $identifier],

@@ -12,12 +12,22 @@ class AttributeConfig extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'data' => 'array'
+        'data' => 'array',
     ];
 
     public function scopeGrid($builder)
     {
         return $builder->where('grid', true)
             ->orderBy('sort');
+    }
+
+    public function scopeTitle($builder)
+    {
+        return $builder->where('title', true);
+    }
+
+    public function scopeDescription($builder)
+    {
+        return $builder->where('description', true);
     }
 }

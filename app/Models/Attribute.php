@@ -13,17 +13,22 @@ class Attribute extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'value' => 'array'
+        'value' => 'array',
     ];
 
     protected $fillable = [
         'product_id',
         'code',
-        'value'
+        'value',
     ];
 
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function config(): BelongsTo
+    {
+        return $this->belongsTo(AttributeConfig::class, 'code', 'code');
     }
 }

@@ -10,7 +10,10 @@ class ProductFactory extends Factory
     {
         return [
             'identifier' => $this->faker->word,
-            'enabled' => $this->faker->boolean
+            'enabled' => $this->faker->boolean,
+            'family' => $this->faker->word,
+            'categories' => [],
+            'groups' => [],
         ];
     }
 }
