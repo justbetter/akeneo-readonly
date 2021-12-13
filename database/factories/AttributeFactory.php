@@ -26,6 +26,29 @@ class AttributeFactory extends Factory
         'other'
     ];
 
+    const GROUP_LABELS = [
+        'general' => [
+            'nl_NL' => 'Algemeen',
+            'en_US' => 'General'
+        ],
+        'logistics' => [
+            'nl_NL' => 'Logistiek',
+            'en_US' => 'Logistics'
+        ],
+        'measurements' => [
+            'nl_NL' => 'Afmetingen',
+            'en_US' => 'Measurements'
+        ],
+        'technical' => [
+            'nl_NL' => 'Technisch',
+            'en_US' => 'Technical'
+        ],
+        'other' => [
+            'nl_NL' => 'Overig',
+            'en_US' => 'Other'
+        ]
+    ];
+
     const TYPES = [
         'pim_catalog_text',
         'pim_catalog_textarea',
@@ -66,13 +89,17 @@ class AttributeFactory extends Factory
         $config = AttributeConfig::where('code', $code)->first();
 
         if ($config === null) {
+            $group = Arr::random(self::GROUPS);
+
             $config = AttributeConfig::create([
                 'code' => $code,
                 'data' => [
                     'type' => Arr::random(self::TYPES),
-                    'group' => Arr::random(self::GROUPS),
+                    'group' => $group,
+                    'group_labels' => self::GROUP_LABELS[$group],
                     'localizable' => random_int(0, 1) == 0,
                     'scopable' => random_int(0, 1) == 0,
+                    'sort_order' => random_int(0, 10),
                     'labels' => [
                         'nl_NL' => 'NL ' . $code,
                         'en_US' => 'EN ' . $code

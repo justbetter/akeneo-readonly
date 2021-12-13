@@ -15,11 +15,11 @@ class SimpleSelect extends AbstractType
         ];
     }
 
-    public function retrieve(string $attributeCode, array $data, ?string $scopable, ?string $localizable): string|array
+    public function retrieve(string $attributeCode, array $data, ?string $scope, ?string $locale): string|array
     {
         $selectedOption = collect($data)
-            ->where('scopable', $scopable)
-            ->where('localizable', $localizable)
+            ->where('scope', $scope)
+            ->where('locale', $locale)
             ->first();
 
         if ($selectedOption === null) {
