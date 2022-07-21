@@ -10,8 +10,7 @@ class ProductDeleted
 {
     public function __construct(
         public DeleteProduct $deleteProduct
-    )
-    {
+    ) {
     }
 
     public function handle(Event $event): void

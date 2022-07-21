@@ -11,8 +11,7 @@ class UpsertProduct
 {
     public function __construct(
         public UpsertAttribute $upsertAttribute
-    )
-    {
+    ) {
     }
 
     public function upsert(AkeneoProduct $akeneoProduct): Product

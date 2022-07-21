@@ -17,10 +17,9 @@ class RetrieveProductJob implements ShouldQueue, ShouldBeUnique
     use Queueable;
 
     public function __construct(
-        public string   $identifier,
+        public string $identifier,
         public ?Product $product = null
-    )
-    {
+    ) {
     }
 
     public function handle(UpsertProduct $upsertProduct): void

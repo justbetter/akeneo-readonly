@@ -19,7 +19,6 @@ class RetrieveAttributeConfigsJob implements ShouldQueue, ShouldBeUnique
     public function handle(): void
     {
         Attribute::lazy()->each(function (Attribute $attribute): void {
-
             AttributeConfig::query()->updateOrCreate(
                 [
                     'code' => $attribute['code'],
@@ -28,7 +27,6 @@ class RetrieveAttributeConfigsJob implements ShouldQueue, ShouldBeUnique
                     'data' => $attribute->toArray(),
                 ],
             );
-
         });
     }
 }

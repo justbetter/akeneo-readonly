@@ -10,8 +10,7 @@ class ProductCreated
 {
     public function __construct(
         public UpsertProduct $upsertProduct
-    )
-    {
+    ) {
     }
 
     public function handle(Event $event): void

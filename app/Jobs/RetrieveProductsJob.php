@@ -23,9 +23,7 @@ class RetrieveProductsJob implements ShouldQueue, ShouldBeUnique
         Attribute::query()->truncate();
 
         AkeneoProduct::lazy()->each(function (AkeneoProduct $product): void {
-
             RetrieveProductJob::dispatch($product['identifier'], $product);
-
         });
     }
 }
