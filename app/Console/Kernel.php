@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(RetrieveAttributeConfigsCommand::class)->weeklyOn(1);
-        $schedule->command(RetrieveProductsCommand::class)->weeklyOn(2);
+        $schedule->command(RetrieveAttributeConfigsCommand::class)->weekly();
+        $schedule->command(RetrieveProductsCommand::class)->weekly();
 
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
