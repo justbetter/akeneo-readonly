@@ -2,11 +2,10 @@
 
 namespace Tests\Unit;
 
-use App\Console\Commands\RetrieveAttributeConfigs;
-use App\Console\Commands\RetrieveProduct;
-use App\Console\Commands\RetrieveProducts;
-use App\Console\Commands\Setup;
-use App\Console\Commands\UpdateProducts;
+use App\Console\Commands\RetrieveAttributeConfigsCommand;
+use App\Console\Commands\RetrieveProductCommand;
+use App\Console\Commands\RetrieveProductsCommand;
+use App\Console\Commands\SetupCommand;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Bus;
 use Tests\TestCase;
@@ -28,12 +27,11 @@ class CommandDispatchTest extends TestCase
     public function commands(): array
     {
         return [
-            [RetrieveAttributeConfigs::class, \App\Jobs\RetrieveAttributeConfigs::class],
-            [RetrieveProducts::class, \App\Jobs\RetrieveProducts::class],
-            [RetrieveProduct::class, \App\Jobs\RetrieveProduct::class, ['identifier' => '::identifier::']],
-            [UpdateProducts::class, \App\Jobs\UpdateProducts::class],
-            [Setup::class, \App\Jobs\RetrieveAttributeConfigs::class],
-            [Setup::class, \App\Jobs\RetrieveProducts::class],
+            [RetrieveAttributeConfigsCommand::class, \App\Jobs\RetrieveAttributeConfigsJob::class],
+            [RetrieveProductsCommand::class, \App\Jobs\RetrieveProductsJob::class],
+            [RetrieveProductCommand::class, \App\Jobs\RetrieveProductJob::class, ['identifier' => '::identifier::']],
+            [SetupCommand::class, \App\Jobs\RetrieveAttributeConfigsJob::class],
+            [SetupCommand::class, \App\Jobs\RetrieveProductsJob::class],
         ];
     }
 }

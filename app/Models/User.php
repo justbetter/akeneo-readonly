@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Filament\Models\Concerns\IsFilamentUser;
 use Filament\Models\Concerns\SendsFilamentPasswordResetNotification;
 use Filament\Models\Contracts\FilamentUser;
@@ -12,6 +13,23 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property ?Carbon $email_verified_at
+ * @property string $password
+ * @property ?string $two_factor_secret
+ * @property ?string $two_factor_recovery_codes
+ * @property ?string $remember_token
+ * @property ?int $current_team_id
+ * @property ?string $profile_photo_path
+ * @property bool $admin
+ * @property ?array $filament_roles
+ * @property ?Carbon $created_at
+ * @property ?Carbon $updated_at
+ * @property ?string $preferred_locale
+ */
 class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
@@ -48,7 +66,7 @@ class User extends Authenticatable implements FilamentUser
         'profile_photo_url',
     ];
 
-    public function isFilamentAdmin()
+    public function isFilamentAdmin(): bool
     {
         return $this->admin;
     }
