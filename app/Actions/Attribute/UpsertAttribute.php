@@ -20,8 +20,11 @@ class UpsertAttribute
                 'value' => $attributeData,
             ];
 
-            $createdAttributes[] = Attribute::updateOrCreate(
-                ['product_id' => $product->id, 'code' => $code],
+            $createdAttributes[] = Attribute::query()->updateOrCreate(
+                [
+                    'product_id' => $product->id,
+                    'code' => $code,
+                ],
                 $data
             );
         }

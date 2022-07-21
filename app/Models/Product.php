@@ -2,11 +2,24 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
+/**
+ * @property int $id
+ * @property string $identifier
+ * @property string $type
+ * @property bool $enabled
+ * @property ?string $family
+ * @property ?array $categories
+ * @property ?array $groups
+ * @property ?string $parent
+ * @property ?Carbon $created_at
+ * @property ?Carbon $updated_at
+ */
 class Product extends Model
 {
     use HasFactory;

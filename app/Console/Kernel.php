@@ -2,35 +2,26 @@
 
 namespace App\Console;
 
-use App\Console\Commands\RetrieveProduct;
-use App\Console\Commands\RetrieveProducts;
-use App\Console\Commands\Setup;
-use App\Console\Commands\UpdateProducts;
-use App\Jobs\RetrieveAttributeConfigs;
-use App\Jobs\RetrieveProducts as RetrieveProductsJob;
-use App\Jobs\UpdateProducts as UpdateProductsJob;
+use App\Console\Commands\RetrieveAttributeConfigsCommand;
+use App\Console\Commands\RetrieveProductsCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
     protected $commands = [
-        Setup::class,
-        RetrieveProduct::class,
-        RetrieveProducts::class,
-        UpdateProducts::class,
+        //
     ];
 
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(RetrieveProductsJob::class)->weekly();
-        $schedule->job(UpdateProductsJob::class)->weekly();
-        $schedule->job(RetrieveAttributeConfigs::class)->weekly();
+        $schedule->command(RetrieveAttributeConfigsCommand::class)->weekly();
+        $schedule->command(RetrieveProductsCommand::class)->weekly();
 
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
 
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
 

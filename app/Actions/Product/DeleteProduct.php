@@ -8,7 +8,9 @@ class DeleteProduct
 {
     public function delete(string $identifier): void
     {
-        $product = Product::where('identifier', $identifier)->first();
+        $product = Product::query()
+            ->where('identifier', '=', $identifier)
+            ->first();
 
         if ($product === null) {
             return;

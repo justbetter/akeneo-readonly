@@ -9,22 +9,26 @@ use JustBetter\Akeneo\Models\Product as AkeneoProduct;
 
 class UpsertProduct
 {
-    public function upsert(AkeneoProduct $akeneoProduct, bool $createAttributes = true): ?Product
+    public function __construct(
+        public UpsertAttribute $upsertAttribute
+    ) {
+    }
+
+    public function upsert(AkeneoProduct $akeneoProduct): Product
     {
-        $identifier = $akeneoProduct[$akeneoProduct->primaryKey];
+        if ($akeneoProduct['parent'] !== null) {
+            throw new NotSupportedException('Product models not supported');
+        }
 
-        throw_if($akeneoProduct['parent'] !== null,
-            NotSupportedException::class,
-            'Productmodels not supported');
-
-        $product = Product::updateOrCreate(
-            ['identifier' => $identifier],
-            $akeneoProduct->toArray()
+        /** @var Product $product */
+        $product = Product::query()->updateOrCreate(
+            [
+                'identifier' => $akeneoProduct['identifier'],
+            ],
+            $akeneoProduct->toArray(),
         );
 
-        if ($createAttributes) {
-            app(UpsertAttribute::class)->upsert($akeneoProduct, $product);
-        }
+        $this->upsertAttribute->upsert($akeneoProduct, $product);
 
         return $product;
     }
