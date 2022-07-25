@@ -9,6 +9,7 @@ use Illuminate\Console\Command;
 class SetupCommand extends Command
 {
     protected $signature = 'setup';
+
     protected $description = 'Retrieve all attributes and products';
 
     public function handle(): int

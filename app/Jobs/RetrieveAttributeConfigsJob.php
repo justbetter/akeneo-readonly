@@ -22,6 +22,7 @@ class RetrieveAttributeConfigsJob implements ShouldQueue, ShouldBeUnique
             AttributeConfig::query()->updateOrCreate(
                 [
                     'code' => $attribute['code'],
+                    'import_filter' => [],
                 ],
                 [
                     'data' => $attribute->toArray(),

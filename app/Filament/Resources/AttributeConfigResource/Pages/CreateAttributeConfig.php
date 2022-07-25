@@ -8,7 +8,7 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateAttributeConfig extends CreateRecord
 {
-    public static $resource = AttributeConfigResource::class;
+    public static string $resource = AttributeConfigResource::class;
 
     public function beforeCreate()
     {

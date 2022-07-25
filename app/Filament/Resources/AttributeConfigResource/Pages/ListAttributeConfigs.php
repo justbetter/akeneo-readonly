@@ -7,5 +7,5 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListAttributeConfigs extends ListRecords
 {
-    public static $resource = AttributeConfigResource::class;
+    public static string $resource = AttributeConfigResource::class;
 }

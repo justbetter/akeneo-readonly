@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 class RetrieveProductsCommand extends Command
 {
     protected $signature = 'retrieve:products';
+
     protected $description = 'Retrieve all products from Akeneo';
 
     public function handle(): int

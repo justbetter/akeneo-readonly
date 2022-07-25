@@ -106,7 +106,7 @@ class ValueRetrieverTest extends TestCase
                 ],
                 null,
                 'nl_NL',
-                ['nl_NL'=> 'Some Option Label'],
+                ['nl_NL' => 'Some Option Label'],
             ],
             [
                 '::multi_select_attribute::',
@@ -120,7 +120,7 @@ class ValueRetrieverTest extends TestCase
                 ],
                 null,
                 null,
-                ['nl_NL'=> ['Some Option Label', 'Another Option Label']],
+                ['nl_NL' => ['Some Option Label', 'Another Option Label']],
             ],
         ];
     }

@@ -27,6 +27,7 @@ class AttributeConfig extends Model
 
     protected $casts = [
         'data' => 'array',
+        'import_filter' => 'array',
     ];
 
     public function scopeGrid(Builder $builder): Builder
