@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 class RetrieveAttributeConfigsCommand extends Command
 {
     protected $signature = 'retrieve:attribute:configs';
+
     protected $description = 'Retrieve attributes to fill the configs table';
 
     public function handle(): int

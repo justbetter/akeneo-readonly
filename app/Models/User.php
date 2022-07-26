@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Filament\Models\Concerns\IsFilamentUser;
-use Filament\Models\Concerns\SendsFilamentPasswordResetNotification;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,10 +35,6 @@ class User extends Authenticatable implements FilamentUser
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use IsFilamentUser;
-    use SendsFilamentPasswordResetNotification;
-
-    public static string $filamentUserColumn = 'admin';
 
     protected $fillable = [
         'name',
@@ -66,7 +60,7 @@ class User extends Authenticatable implements FilamentUser
         'profile_photo_url',
     ];
 
-    public function isFilamentAdmin(): bool
+    public function canAccessFilament(): bool
     {
         return $this->admin;
     }

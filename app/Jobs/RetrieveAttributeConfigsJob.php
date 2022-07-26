@@ -19,14 +19,22 @@ class RetrieveAttributeConfigsJob implements ShouldQueue, ShouldBeUnique
     public function handle(): void
     {
         Attribute::lazy()->each(function (Attribute $attribute): void {
-            AttributeConfig::query()->updateOrCreate(
+
+            /** @var AttributeConfig $config */
+            $config = AttributeConfig::query()->firstOrNew(
                 [
                     'code' => $attribute['code'],
                 ],
                 [
-                    'data' => $attribute->toArray(),
+                    'import_filter' => [],
                 ],
             );
+
+            $config->update([
+                'data' => $attribute->toArray(),
+            ]);
+
+            $config->save();
         });
     }
 }

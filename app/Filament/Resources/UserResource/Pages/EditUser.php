@@ -7,7 +7,7 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditUser extends EditRecord
 {
-    public static $resource = UserResource::class;
+    public static string $resource = UserResource::class;
 
     public function beforeSave()
     {

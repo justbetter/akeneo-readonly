@@ -15,7 +15,9 @@ class AttributeGroup extends Component
     ];
 
     public Product $product;
+
     public string $group;
+
     public array $labels;
 
     public array $akeneoAttributes = [];

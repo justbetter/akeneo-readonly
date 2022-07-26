@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property array $data
  * @property bool $visible
  * @property bool $grid
+ * @property array $import_filter
  * @property ?Carbon $created_at
  * @property ?Carbon $updated_at
  * @property int $sort
@@ -27,6 +28,7 @@ class AttributeConfig extends Model
 
     protected $casts = [
         'data' => 'array',
+        'import_filter' => 'array',
     ];
 
     public function scopeGrid(Builder $builder): Builder
