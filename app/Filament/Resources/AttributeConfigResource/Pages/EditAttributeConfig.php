@@ -24,8 +24,10 @@ class EditAttributeConfig extends EditRecord
     protected function mutateFormDataBeforeFill(array $data): array
     {
         $data['import_filter_enabled'] = $data['import_filter']['enabled'] ?? false;
-        $data['import_filter_type'] = $data['import_filter']['type'] ?? '';
+        $data['import_filter_operator'] = $data['import_filter']['operator'] ?? '';
         $data['import_filter_value'] = $data['import_filter']['value'] ?? '';
+        $data['import_filter_scope'] = $data['import_filter']['scope'] ?? '';
+        $data['import_filter_locale'] = $data['import_filter']['locale'] ?? '';
 
         return $data;
     }
@@ -33,14 +35,18 @@ class EditAttributeConfig extends EditRecord
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $data['import_filter'] = [
-            'enabled' => true,
-            'type' => $data['import_filter_type'],
+            'enabled' =>  $data['import_filter_enabled'],
+            'operator' => $data['import_filter_operator'],
             'value' => $data['import_filter_value'],
+            'scope' => $data['import_filter_scope'],
+            'locale' => $data['import_filter_locale'],
         ];
 
         unset($data['import_filter_enabled']);
-        unset($data['import_filter_type']);
+        unset($data['import_filter_operator']);
         unset($data['import_filter_value']);
+        unset($data['import_filter_scope']);
+        unset($data['import_filter_locale']);
 
         return $data;
     }

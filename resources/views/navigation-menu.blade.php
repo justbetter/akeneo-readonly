@@ -57,7 +57,7 @@
                             @endif
 
                             @if (auth()->user()->admin)
-                                <x-jet-dropdown-link href="{{ route('filament.dashboard') }}">
+                                <x-jet-dropdown-link href="{{ config('filament.path') }}">
                                     {{ __('Admin') }}
                                 </x-jet-dropdown-link>
                             @endif

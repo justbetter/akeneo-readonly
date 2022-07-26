@@ -3,11 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AttributeConfigResource\Pages;
+use App\Jobs\RetrieveProductJob;
 use App\Models\AttributeConfig;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Pages\Actions\Action;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -19,6 +21,38 @@ class AttributeConfigResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $importFilterFields = [
+            Checkbox::make('import_filter_enabled')
+                ->name('Use this attribute for filtering products that are imported')
+                ->helperText('Enable import filter'),
+
+            Select::make('import_filter_operator')
+                ->name('Operator')
+                ->options([
+                    '=' => '=',
+                    '!=' => '!=',
+                    '>' => '>',
+                    '<' => '<',
+                    '<=' => '<=',
+                    '>=' => '>=',
+                    'IN' => 'IN',
+                    'NOT IN' => 'NOT IN',
+                ]),
+
+            TextInput::make('import_filter_value')
+                ->name('Value')
+                ->helperText('Use comma seperated values for IN operators'),
+
+            TextInput::make('import_filter_scope')
+                ->name('Scope')
+                ->helperText('Optional, fill in for scopable attributes'),
+
+            TextInput::make('import_filter_locale')
+                ->name('Locale')
+                ->helperText('Optional, fill in for localizable attributes'),
+
+        ];
+
         return $form
             ->schema([
                 Card::make([
@@ -42,18 +76,7 @@ class AttributeConfigResource extends Resource
 
                 ]),
 
-                Card::make([
-
-                    Checkbox::make('import_filter_enabled')
-                        ->helperText('Enable import filter'),
-
-                    Select::make('import_filter_type')
-                        ->options([
-                            '=' => '=',
-                        ]),
-
-                    TextInput::make('import_filter_value'),
-                ]),
+                Card::make($importFilterFields),
 
             ]);
     }
