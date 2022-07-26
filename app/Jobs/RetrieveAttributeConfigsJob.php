@@ -23,7 +23,7 @@ class RetrieveAttributeConfigsJob implements ShouldQueue, ShouldBeUnique
             /** @var AttributeConfig $config */
             $config = AttributeConfig::query()->firstOrNew(
                 [
-                    'code' => $attribute['code']
+                    'code' => $attribute['code'],
                 ],
                 [
                     'import_filter' => [],
@@ -31,7 +31,7 @@ class RetrieveAttributeConfigsJob implements ShouldQueue, ShouldBeUnique
             );
 
             $config->update([
-                'data' => $attribute->toArray()
+                'data' => $attribute->toArray(),
             ]);
 
             $config->save();
