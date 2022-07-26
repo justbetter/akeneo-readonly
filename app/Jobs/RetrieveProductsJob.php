@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 
-class RetrieveProductsJob implements ShouldQueue//, ShouldBeUnique
+class RetrieveProductsJob implements ShouldQueue //, ShouldBeUnique
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -18,10 +18,8 @@ class RetrieveProductsJob implements ShouldQueue//, ShouldBeUnique
     public function handle(
         TruncateProducts $truncateProducts,
         RetrieveProducts $retrieveProducts
-    ): void
-    {
-        $truncateProducts->handle();;
+    ): void {
+        $truncateProducts->handle();
         $retrieveProducts->handle();
     }
-
 }

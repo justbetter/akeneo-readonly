@@ -36,7 +36,6 @@ class RetrieveProducts
             ->where('import_filter', 'LIKE', '%enabled": true%')
             ->get()
             ->each(function (AttributeConfig $config) use (&$searchBuilder) {
-
                 $scopable = $config['data']['scopable'] && ! blank($config->import_filter['scope'] ?? null);
                 $localizable = $config['data']['localizable'] && ! blank($config->import_filter['locale'] ?? null);
 
@@ -62,10 +61,8 @@ class RetrieveProducts
                     $value,
                     $options
                 );
-
             });
 
         return $searchBuilder->getFilters();
     }
-
 }

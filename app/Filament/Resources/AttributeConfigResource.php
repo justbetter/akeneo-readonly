@@ -3,13 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AttributeConfigResource\Pages;
-use App\Jobs\RetrieveProductJob;
 use App\Models\AttributeConfig;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Pages\Actions\Action;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
