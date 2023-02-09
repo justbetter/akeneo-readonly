@@ -129,11 +129,9 @@ class ProductTable extends DataTableComponent
 
     protected function getImageUrl(Attribute $attribute): string
     {
-        $baseUrl = config('akeneo.connections.default.url');
-
         $image = $this->getLocalizedAttribute($attribute->value);
 
-        return $baseUrl.'/media/cache/thumbnail_small/'.$image['data'];
+        return route('product.image', ['code' => $image['data'], 'width' => 48, 'height' => 48]);
     }
 
     public function getTableRowUrl(Product $product): string
