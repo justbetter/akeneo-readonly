@@ -42,12 +42,7 @@ class Images extends Component
                     ->where('locale', $locale)
                     ->first();
 
-                $baseUrl = config('akeneo.connections.default.url');
-
-                return [
-                    'thumb' => $baseUrl.'/media/cache/thumbnail_small/'.$image['data'],
-                    'full' => $baseUrl.'/media/cache/preview/'.$image['data'],
-                ];
+                return $image['data'];
             })
             ->toArray();
     }

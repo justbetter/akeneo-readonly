@@ -13,6 +13,7 @@
         "filament/filament": "^2.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.7",
         "justbetter/laravel-akeneo": "dev-main",
         "laravel/framework": "^9.0",
         "laravel/horizon": "^5.7",
