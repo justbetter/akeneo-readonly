@@ -9,12 +9,14 @@ class EditUser extends EditRecord
 {
     public static string $resource = UserResource::class;
 
-    public function beforeSave()
+    public function mutateFormDataBeforeSave(array $data): array
     {
-        if ($this->record->password === null) {
-            $this->record->password = $this->record->getRawOriginal('password');
+        if ($data['password'] === null) {
+            $data['password'] = $this->record->password;
         } else {
-            $this->record->password = bcrypt($this->record->password);
+            $data['password'] = bcrypt($data['password']);
         }
+
+        return $data;
     }
 }

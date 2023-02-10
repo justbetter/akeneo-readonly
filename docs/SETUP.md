@@ -6,7 +6,7 @@
 ```shell
 cp .env.example .env
 ```
-2. Fill in the values staring with `APP_` and `DATABASE_`
+2. Fill in the values starting with `APP_` and `DATABASE_`
 3. Generate an app key `php artisan key:generate`
 
 ## Horizon
