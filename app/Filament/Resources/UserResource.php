@@ -28,7 +28,7 @@ class UserResource extends Resource
                         ->email()
                         ->required(),
 
-                    Checkbox::make('record.admin'),
+                    Checkbox::make('admin'),
 
                     TextInput::make('password')
                         ->password(),

@@ -9,8 +9,10 @@ class CreateUser extends CreateRecord
 {
     public static string $resource = UserResource::class;
 
-    public function beforeCreate()
+    public function mutateFormDataBeforeCreate(array $data): array
     {
-        $this->record['password'] = bcrypt($this->record['password']);
+        $data['password'] = bcrypt($data['password']);
+
+        return $data;
     }
 }
