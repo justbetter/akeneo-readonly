@@ -72,7 +72,7 @@ class ProductTable extends DataTableComponent
                         : $data;
                 });
 
-                $columns[] = $column;
+            $columns[] = $column;
         }
 
         return $columns;
