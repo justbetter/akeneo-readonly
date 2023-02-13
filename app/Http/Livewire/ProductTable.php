@@ -80,9 +80,10 @@ class ProductTable extends DataTableComponent
 
     public function query(): Builder
     {
+        /** @return Builder */
         return Product::query()
             ->with('attributes')
-            ->when($this->getFilter('search'), fn ($query, $term) => $query->search(strtolower($term), $this->searchables));
+            ->when($this->getFilter('search'), fn (Builder $query, string $term) => $query->search(strtolower($term), $this->searchables));
     }
 
     protected function getLocalizedAttribute(array $attributeValues, ?string $locale = null): array
