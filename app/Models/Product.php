@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property int $id
@@ -46,6 +48,17 @@ class Product extends Model
         });
 
         parent::boot();
+    }
+
+    public function scopeSearch(Builder $query, string $term, array $searchables): Builder
+    {
+        $codes = collect($searchables)->pluck('code');
+
+        return $query->whereHas('attributes', function(Builder $query) use ($term, $codes) {
+            $query->whereIn('code', $codes)
+                ->where(DB::raw('lower(value)'), 'LIKE', "%{$term}%")
+                ->orWhere('identifier', 'LIKE', "%{$term}%");
+        });
     }
 
     public function attributes(): HasMany

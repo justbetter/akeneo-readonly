@@ -18,6 +18,8 @@ class ProductTable extends DataTableComponent
         'pim_catalog_simpleselect',
     ];
 
+    protected array $searchables = [];
+
     protected $listeners = [
         'update-locale' => '$refresh',
     ];
@@ -38,6 +40,8 @@ class ProductTable extends DataTableComponent
         ];
 
         $attributes = AttributeConfig::grid()->get();
+
+        $this->searchables = $attributes->where('searchable', true)->toArray();
 
         $locale = auth()->user()->preferred_locale;
 
@@ -68,24 +72,17 @@ class ProductTable extends DataTableComponent
                         : $data;
                 });
 
-            if (in_array($attribute->data['type'], $this->searchableTypes)) {
-                $column->searchable([$this, 'search']);
-            }
-
-            $columns[] = $column;
+                $columns[] = $column;
         }
 
         return $columns;
     }
 
-    public function search(Builder $query, string $search)
+    public function query(): Builder
     {
-        return $query->where('identifier', 'LIKE', "%{$search}%");
-    }
-
-    public function query()
-    {
-        return Product::with('attributes');
+        return Product::query()
+            ->with('attributes')
+            ->when($this->getFilter('search'), fn ($query, $term) => $query->search(strtolower($term), $this->searchables));
     }
 
     protected function getLocalizedAttribute(array $attributeValues, ?string $locale = null): array
