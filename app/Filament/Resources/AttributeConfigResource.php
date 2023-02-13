@@ -60,6 +60,9 @@ class AttributeConfigResource extends Resource
                     TextInput::make('sort')
                         ->numeric(),
 
+                    Checkbox::make('searchable')
+                        ->helperText('Make searchable'),
+
                     Checkbox::make('visible')
                         ->helperText('Visible on the detail page'),
 
@@ -96,6 +99,9 @@ class AttributeConfigResource extends Resource
                     ->sortable(),
 
                 Columns\BooleanColumn::make('grid')
+                    ->sortable(),
+
+                Columns\BooleanColumn::make('searchable')
                     ->sortable(),
 
                 Columns\BooleanColumn::make('title')

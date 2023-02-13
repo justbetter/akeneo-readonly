@@ -47,4 +47,9 @@ class AttributeConfig extends Model
     {
         return $builder->where('description', '=', true);
     }
+
+    public function scopeSearchable(Builder $builder): Builder
+    {
+        return $builder->where('searchable', '=', true);
+    }
 }
