@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\AttributeConfigResource\Pages;
 
-use Filament\Pages\Actions\Action;
 use App\Filament\Resources\AttributeConfigResource;
 use App\Models\AttributeConfig;
+use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\EditRecord;
 
 class EditAttributeConfig extends EditRecord
@@ -17,7 +17,7 @@ class EditAttributeConfig extends EditRecord
             Action::make('delete')->hidden(true),
         ];
     }
-    
+
     public function beforeSave()
     {
         if ($this->record['title']) {
