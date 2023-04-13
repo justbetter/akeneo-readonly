@@ -43,7 +43,7 @@ class EditAttributeConfig extends EditRecord
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $data['import_filter'] = [
-            'enabled' =>  $data['import_filter_enabled'],
+            'enabled' => $data['import_filter_enabled'],
             'operator' => $data['import_filter_operator'],
             'value' => $data['import_filter_value'],
             'scope' => $data['import_filter_scope'],
