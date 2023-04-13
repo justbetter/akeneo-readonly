@@ -43,7 +43,7 @@ class MultiSelect extends AbstractType
 
     protected function getLabels(string $attributeCode, string $optionCode)
     {
-        return Cache::remember("labels.$attributeCode.$optionCode", 86400,
+        return Cache::remember("labels.$attributeCode.$optionCode", now()->addDay(),
             fn () => Akeneo::getAttributeOptionApi()->get($attributeCode, $optionCode)['labels']);
     }
 }
