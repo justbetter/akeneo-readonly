@@ -30,7 +30,7 @@ class SimpleSelect extends AbstractType
 
     protected function getLabels(string $attributeCode, string $optionCode)
     {
-        return Cache::rememberForever("labels.$attributeCode.$optionCode",
+        return Cache::remember("labels.$attributeCode.$optionCode", 86400,
             fn () => Akeneo::getAttributeOptionApi()->get($attributeCode, $optionCode)['labels']);
     }
 }
