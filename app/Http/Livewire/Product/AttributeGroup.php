@@ -61,6 +61,10 @@ class AttributeGroup extends Component
             ->first();
 
         if ($attribute === null) {
+            if ($config->data['type'] === 'pim_catalog_identifier') {
+                return $this->product->identifier;
+            }
+
             return '';
         }
 

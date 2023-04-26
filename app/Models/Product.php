@@ -88,7 +88,17 @@ class Product extends Model
             ->attributes()
             ->select(['code'])
             ->distinct()
-            ->get();
+            ->get()
+            ->pluck('code');
+
+        $identifierAttributeCodes = AttributeConfig::query()
+            ->select(['code'])
+            ->where('data', 'like', '%pim_catalog_identifier%')
+            ->distinct()
+            ->get()
+            ->pluck('code');
+
+        $attributeCodes = $identifierAttributeCodes->merge($attributeCodes);
 
         return AttributeConfig::query()
             ->whereIn('code', $attributeCodes)
