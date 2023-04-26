@@ -90,7 +90,7 @@ class Product extends Model
             ->distinct()
             ->get()
             ->pluck('code');
-        
+
         $identifierAttributeCodes = AttributeConfig::query()
             ->select(['code'])
             ->where('data', 'like', '%pim_catalog_identifier%')
