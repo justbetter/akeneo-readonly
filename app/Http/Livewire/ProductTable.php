@@ -70,7 +70,6 @@ class ProductTable extends DataTableComponent
         /** @return Builder */
         return Product::query()
             ->with('attributes');
-        //->when($this->getFilter('search'), fn (Builder $query, string $term) => $query->search(strtolower($term), $this->searchables));
     }
 
     /** Get localized label from Akeneo config */
