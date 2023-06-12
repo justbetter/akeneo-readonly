@@ -20,6 +20,7 @@ class LanguageSelector extends Component
             function () {
                 /** @var Akeneo $akeneo */
                 $akeneo = app(Akeneo::class);
+
                 return $akeneo->getChannelApi()->get(config('app.channel'))['locales'];
             }
         );

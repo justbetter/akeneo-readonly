@@ -29,12 +29,11 @@ class ProductTable extends DataTableComponent
 
     public ?string $defaultSortColumn = 'identifier';
 
-
     public function configure(): void
     {
         $this
             ->setPrimaryKey('identifier')
-            ->setTableRowUrl(function(Product $product) {
+            ->setTableRowUrl(function (Product $product) {
                 return route('product.detail', $product->identifier);
             });
     }
@@ -71,7 +70,7 @@ class ProductTable extends DataTableComponent
         /** @return Builder */
         return Product::query()
             ->with('attributes');
-            //->when($this->getFilter('search'), fn (Builder $query, string $term) => $query->search(strtolower($term), $this->searchables));
+        //->when($this->getFilter('search'), fn (Builder $query, string $term) => $query->search(strtolower($term), $this->searchables));
     }
 
     /** Get localized label from Akeneo config */
@@ -93,21 +92,19 @@ class ProductTable extends DataTableComponent
         if ($this->searchIsEnabled() && $this->hasSearch()) {
             $searchQuery = $this->getSearch();
 
-            $builder->whereHas('attributes', function(Builder $query) use ($searchQuery) {
-               $query
-                   ->join('attribute_configs', function(JoinClause $join) {
-                       $join
-                           ->on('attribute_configs.code', '=', 'attributes.code')
-                           ->where('attribute_configs.searchable', '=', 1);
-                   })
-                    ->where('value', 'LIKE', "%$searchQuery%");
+            $builder->whereHas('attributes', function (Builder $query) use ($searchQuery) {
+                $query
+                    ->join('attribute_configs', function (JoinClause $join) {
+                        $join
+                            ->on('attribute_configs.code', '=', 'attributes.code')
+                            ->where('attribute_configs.searchable', '=', 1);
+                    })
+                     ->where('value', 'LIKE', "%$searchQuery%");
             });
-
         }
 
         return $builder;
     }
-
 
     public function getSelectableColumns(): Collection
     {

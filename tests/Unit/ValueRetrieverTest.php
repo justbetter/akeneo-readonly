@@ -14,7 +14,7 @@ class ValueRetrieverTest extends TestCase
     {
         parent::setUp();
 
-        $this->partialMock(SimpleSelect::class, function (MockInterface $mock):void {
+        $this->partialMock(SimpleSelect::class, function (MockInterface $mock): void {
             $mock->shouldAllowMockingProtectedMethods();
 
             $mock->shouldReceive('getLabels')

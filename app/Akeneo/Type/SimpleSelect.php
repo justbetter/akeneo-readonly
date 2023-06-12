@@ -36,6 +36,7 @@ class SimpleSelect extends AbstractType
             function () use ($attributeCode, $optionCode): array {
                 /** @var Akeneo $akeneo */
                 $akeneo = app(Akeneo::class);
+
                 return $akeneo->getAttributeOptionApi()->get($attributeCode, $optionCode)['labels'];
             }
         );
