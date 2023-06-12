@@ -3,8 +3,7 @@
 namespace App\Listeners;
 
 use App\Actions\Product\UpsertProduct;
-use JustBetter\Akeneo\Events\ProductUpdated as Event;
-use JustBetter\Akeneo\Models\Product;
+use JustBetter\AkeneoClient\Events\ProductUpdatedEvent;
 
 class ProductUpdated
 {
@@ -13,10 +12,8 @@ class ProductUpdated
     ) {
     }
 
-    public function handle(Event $event): void
+    public function handle(ProductUpdatedEvent $event): void
     {
-        $akeneoProduct = new Product($event->event['data']['resource']);
-
-        $this->upsertProduct->upsert($akeneoProduct);
+        $this->upsertProduct->upsert($event->event['data']['resource']);
     }
 }

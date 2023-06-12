@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Intervention\Image\ImageManagerStatic;
-use JustBetter\Akeneo\Facades\Akeneo;
+use JustBetter\AkeneoClient\Client\Akeneo;
 
 class ProductController extends Controller
 {
@@ -20,7 +20,7 @@ class ProductController extends Controller
         return response()->view('product', ['product' => $product]);
     }
 
-    public function image(Request $request): Response
+    public function image(Request $request, Akeneo $akeneo): Response
     {
         $code = $request->get('code');
         $width = $request->get('width');
@@ -30,9 +30,7 @@ class ProductController extends Controller
             abort(404);
         }
 
-        $api = Akeneo::getProductMediaFileApi();
-
-        $file = $api->download($code);
+        $file = $akeneo->getProductMediaFileApi()->download($code);
 
         $image = ImageManagerStatic::make($file->getBody());
 

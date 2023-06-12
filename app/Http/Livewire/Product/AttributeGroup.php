@@ -6,10 +6,12 @@ use App\Akeneo\ValueRetriever;
 use App\Models\AttributeConfig;
 use App\Models\Product;
 use Illuminate\Support\Arr;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class AttributeGroup extends Component
 {
+    /** @var array<string, string> */
     protected $listeners = [
         'update-locale' => '$refresh',
     ];
@@ -22,12 +24,12 @@ class AttributeGroup extends Component
 
     public array $akeneoAttributes = [];
 
-    public function mount()
+    public function mount(): void
     {
         $this->akeneoAttributes = $this->product->getAttributesPerGroup()[$this->group] ?? [];
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.product.attribute-group');
     }

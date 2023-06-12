@@ -15,7 +15,7 @@ use Filament\Tables\Columns;
 
 class AttributeConfigResource extends Resource
 {
-    public static $icon = 'heroicon-o-cog';
+    public static string $icon = 'heroicon-o-cog';
 
     public static function form(Form $form): Form
     {

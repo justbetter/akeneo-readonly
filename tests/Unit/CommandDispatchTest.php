@@ -15,7 +15,7 @@ class CommandDispatchTest extends TestCase
     /**
      * @dataProvider commands
      */
-    public function test_commands_dispatch_jobs(string $commandClass, string $jobClass, array $params = [])
+    public function test_commands_dispatch_jobs(string $commandClass, string $jobClass, array $params = []): void
     {
         Bus::fake();
 
@@ -24,7 +24,7 @@ class CommandDispatchTest extends TestCase
         Bus::assertDispatched($jobClass);
     }
 
-    public function commands(): array
+    public static function commands(): array
     {
         return [
             [RetrieveAttributeConfigsCommand::class, \App\Jobs\RetrieveAttributeConfigsJob::class],

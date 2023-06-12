@@ -5,8 +5,7 @@ namespace App\Actions\Product;
 use Akeneo\Pim\ApiClient\Search\SearchBuilder;
 use App\Jobs\RetrieveProductJob;
 use App\Models\AttributeConfig;
-use JustBetter\Akeneo\Integrations\Akeneo;
-use JustBetter\Akeneo\Models\Product as AkeneoProduct;
+use JustBetter\AkeneoClient\Client\Akeneo;
 
 class RetrieveProducts
 {
@@ -23,8 +22,7 @@ class RetrieveProducts
         $products = $productApi->all(static::PAGE_SIZE, ['search' => $this->getFilters()]);
 
         foreach ($products as $product) {
-            $akeneoProduct = new AkeneoProduct($product);
-            RetrieveProductJob::dispatch($akeneoProduct['identifier'], $akeneoProduct);
+            RetrieveProductJob::dispatch($product['identifier'], $product);
         }
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use JustBetter\Akeneo\Models\Product;
+use JustBetter\AkeneoClient\Client\Akeneo;
 
 class RetrieveProductJob implements ShouldQueue, ShouldBeUnique
 {
@@ -18,14 +18,14 @@ class RetrieveProductJob implements ShouldQueue, ShouldBeUnique
 
     public function __construct(
         public string $identifier,
-        public ?Product $product = null
+        public ?array $product = null
     ) {
     }
 
-    public function handle(UpsertProduct $upsertProduct): void
+    public function handle(UpsertProduct $upsertProduct, Akeneo $akeneo): void
     {
         if ($this->product === null) {
-            $this->product = Product::find($this->identifier);
+            $this->product = $akeneo->getProductApi()->get($this->identifier);
         }
 
         $upsertProduct->upsert($this->product);

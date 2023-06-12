@@ -72,9 +72,9 @@ class AttributeFactory extends Factory
         'attribute_9',
     ];
 
-    public function definition()
+    public function definition(): array
     {
-        $code = Arr::random(self::CODES);
+        $code = Arr::random(static::CODES);
 
         $config = $this->getAttributeConfig($code);
 
@@ -107,6 +107,7 @@ class AttributeFactory extends Factory
                 ],
                 'grid' => random_int(0, 1) == 0,
                 'visible' => random_int(0, 10) < 8,
+                'import_filter' => [],
             ]);
         }
 

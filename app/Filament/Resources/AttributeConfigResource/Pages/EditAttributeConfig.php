@@ -18,7 +18,7 @@ class EditAttributeConfig extends EditRecord
         ];
     }
 
-    public function beforeSave()
+    public function beforeSave(): void
     {
         if ($this->record['title']) {
             AttributeConfig::query()->update(['title' => false]);

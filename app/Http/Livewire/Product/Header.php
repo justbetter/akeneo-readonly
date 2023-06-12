@@ -5,17 +5,19 @@ namespace App\Http\Livewire\Product;
 use App\Akeneo\ValueRetriever;
 use App\Models\AttributeConfig;
 use App\Models\Product;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class Header extends Component
 {
     public Product $product;
 
+    /** @var array<string, string> */
     protected $listeners = [
         'update-locale' => '$refresh',
     ];
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.product.header');
     }

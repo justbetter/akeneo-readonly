@@ -7,26 +7,31 @@ use App\Exceptions\NotSupportedException;
 use App\Models\Attribute;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use JustBetter\Akeneo\Models\Product as AkeneoProduct;
 use Tests\TestCase;
 
 class UpsertProductTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_creates_product()
+    public function test_it_creates_product(): void
     {
-        app(UpsertProduct::class)->upsert($this->getAkeneoProduct(), false);
+        /** @var UpsertProduct $action */
+        $action = app(UpsertProduct::class);
+
+        $action->upsert($this->getAkeneoProduct());
 
         $this->assertDatabaseCount(Product::class, 1);
         $this->assertEquals('::identifier::', Product::first()->identifier);
     }
 
-    public function test_it_upserts_product()
+    public function test_it_upserts_product(): void
     {
         $product = $this->getAkeneoProduct();
 
-        app(UpsertProduct::class)->upsert($product, false);
+        /** @var UpsertProduct $action */
+        $action = app(UpsertProduct::class);
+
+        $action->upsert($product);
 
         $this->assertDatabaseCount(Product::class, 1);
         $this->assertEquals('::identifier::', Product::first()->identifier);
@@ -34,29 +39,33 @@ class UpsertProductTest extends TestCase
 
         $product['family'] = '::family_2::';
 
-        app(UpsertProduct::class)->upsert($product, false);
+        $action->upsert($product);
 
         $this->assertDatabaseCount(Product::class, 1);
         $this->assertEquals('::identifier::', Product::first()->identifier);
         $this->assertEquals('::family_2::', Product::first()->family);
     }
 
-    public function test_it_dispatches_attribute_job()
+    public function test_it_dispatches_attribute_job(): void
     {
-        app(UpsertProduct::class)->upsert($this->getAkeneoProduct());
+        /** @var UpsertProduct $action */
+        $action = app(UpsertProduct::class);
+        $action->upsert($this->getAkeneoProduct());
 
         $this->assertDatabaseCount(Product::class, 1);
         $this->assertDatabaseCount(Attribute::class, 2);
     }
 
-    public function test_it_does_not_support_product_models()
+    public function test_it_does_not_support_product_models(): void
     {
         $this->expectException(NotSupportedException::class);
 
-        app(UpsertProduct::class)->upsert($this->getAkeneoProduct(true));
+        /** @var UpsertProduct $action */
+        $action = app(UpsertProduct::class);
+        $action->upsert($this->getAkeneoProduct(true));
     }
 
-    protected function getAkeneoProduct(bool $withParent = false): AkeneoProduct
+    protected function getAkeneoProduct(bool $withParent = false): array
     {
         $data = [
             'identifier' => '::identifier::',
@@ -84,6 +93,6 @@ class UpsertProductTest extends TestCase
             $data['parent'] = '::some_parent_identifier::';
         }
 
-        return new AkeneoProduct($data);
+        return $data;
     }
 }

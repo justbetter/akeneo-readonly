@@ -3,8 +3,7 @@
 namespace App\Listeners;
 
 use App\Actions\Product\DeleteProduct;
-use JustBetter\Akeneo\Events\ProductRemoved as Event;
-use JustBetter\Akeneo\Models\Product;
+use JustBetter\AkeneoClient\Events\ProductRemovedEvent;
 
 class ProductDeleted
 {
@@ -13,10 +12,8 @@ class ProductDeleted
     ) {
     }
 
-    public function handle(Event $event): void
+    public function handle(ProductRemovedEvent $event): void
     {
-        $akeneoProduct = new Product($event->event['data']['resource']);
-
-        $this->deleteProduct->delete($akeneoProduct['identifier']);
+        $this->deleteProduct->delete($event->event['data']['resource']['identifier']);
     }
 }
