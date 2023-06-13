@@ -3,7 +3,7 @@
 namespace App\Akeneo\Type;
 
 use Illuminate\Support\Facades\Cache;
-use JustBetter\Akeneo\Facades\Akeneo;
+use JustBetter\AkeneoClient\Client\Akeneo;
 
 class SimpleSelect extends AbstractType
 {
@@ -28,9 +28,17 @@ class SimpleSelect extends AbstractType
         return $this->getLabels($attributeCode, $selectedOption['data']);
     }
 
-    protected function getLabels(string $attributeCode, string $optionCode)
+    protected function getLabels(string $attributeCode, string $optionCode): array
     {
-        return Cache::remember("labels.$attributeCode.$optionCode", now()->addDay(),
-            fn () => Akeneo::getAttributeOptionApi()->get($attributeCode, $optionCode)['labels']);
+        return Cache::remember(
+            "labels.$attributeCode.$optionCode",
+            now()->addDay(),
+            function () use ($attributeCode, $optionCode): array {
+                /** @var Akeneo $akeneo */
+                $akeneo = app(Akeneo::class);
+
+                return $akeneo->getAttributeOptionApi()->get($attributeCode, $optionCode)['labels'];
+            }
+        );
     }
 }

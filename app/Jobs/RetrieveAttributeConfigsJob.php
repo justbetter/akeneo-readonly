@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use JustBetter\Akeneo\Models\Attribute;
+use JustBetter\AkeneoClient\Client\Akeneo;
 
 class RetrieveAttributeConfigsJob implements ShouldQueue, ShouldBeUnique
 {
@@ -16,9 +16,10 @@ class RetrieveAttributeConfigsJob implements ShouldQueue, ShouldBeUnique
     use InteractsWithQueue;
     use Queueable;
 
-    public function handle(): void
+    public function handle(Akeneo $akeneo): void
     {
-        Attribute::lazy()->each(function (Attribute $attribute): void {
+        /** @var array $attribute */
+        foreach ($akeneo->getAttributeApi()->all() as $attribute) {
             /** @var AttributeConfig $config */
             $config = AttributeConfig::query()->firstOrNew(
                 [
@@ -29,11 +30,9 @@ class RetrieveAttributeConfigsJob implements ShouldQueue, ShouldBeUnique
                 ],
             );
 
-            $config->update([
-                'data' => $attribute->toArray(),
-            ]);
+            $config->data = $attribute;
 
             $config->save();
-        });
+        }
     }
 }

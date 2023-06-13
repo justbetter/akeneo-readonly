@@ -5,13 +5,13 @@ namespace App\Actions\Attribute;
 use App\Models\Attribute;
 use App\Models\Product;
 use Illuminate\Support\Collection;
-use JustBetter\Akeneo\Models\Product as AkeneoProduct;
 
 class UpsertAttribute
 {
-    public function upsert(AkeneoProduct $akeneoProduct, Product $product): Collection
+    public function upsert(array $akeneoProduct, Product $product): Collection
     {
-        $createdAttributes = new Collection();
+        /** @var Collection<int, Attribute> $createdAttributes */
+        $createdAttributes = collect();
 
         foreach ($akeneoProduct['values'] as $code => $attributeData) {
             $data = [
@@ -20,13 +20,14 @@ class UpsertAttribute
                 'value' => $attributeData,
             ];
 
-            $createdAttributes[] = Attribute::query()->updateOrCreate(
-                [
-                    'product_id' => $product->id,
-                    'code' => $code,
-                ],
-                $data
-            );
+            $createdAttributes[] = Attribute::query()
+                ->updateOrCreate(
+                    [
+                        'product_id' => $product->id,
+                        'code' => $code,
+                    ],
+                    $data
+                );
         }
 
         return $createdAttributes;

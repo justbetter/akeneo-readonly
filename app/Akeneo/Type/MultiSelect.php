@@ -2,12 +2,15 @@
 
 namespace App\Akeneo\Type;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use JustBetter\Akeneo\Facades\Akeneo;
+use JustBetter\AkeneoClient\Client\Akeneo;
 
 class MultiSelect extends AbstractType
 {
+    public function __construct(protected Akeneo $akeneo)
+    {
+    }
+
     public function types(): array
     {
         return [
@@ -26,7 +29,7 @@ class MultiSelect extends AbstractType
             return '';
         }
 
-        $labels = new Collection();
+        $labels = collect();
 
         foreach ($selectedOptions['data'] as $selectedOption) {
             foreach ($this->getLabels($attributeCode, $selectedOption) as $localeLabel => $label) {
@@ -41,9 +44,9 @@ class MultiSelect extends AbstractType
         return $labels->toArray();
     }
 
-    protected function getLabels(string $attributeCode, string $optionCode)
+    protected function getLabels(string $attributeCode, string $optionCode): array
     {
         return Cache::remember("labels.$attributeCode.$optionCode", now()->addDay(),
-            fn () => Akeneo::getAttributeOptionApi()->get($attributeCode, $optionCode)['labels']);
+            fn () => $this->akeneo->getAttributeOptionApi()->get($attributeCode, $optionCode)['labels']);
     }
 }

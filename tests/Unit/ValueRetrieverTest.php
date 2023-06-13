@@ -14,7 +14,7 @@ class ValueRetrieverTest extends TestCase
     {
         parent::setUp();
 
-        $this->partialMock(SimpleSelect::class, function (MockInterface $mock) {
+        $this->partialMock(SimpleSelect::class, function (MockInterface $mock): void {
             $mock->shouldAllowMockingProtectedMethods();
 
             $mock->shouldReceive('getLabels')
@@ -24,7 +24,7 @@ class ValueRetrieverTest extends TestCase
                 ]);
         });
 
-        $this->partialMock(MultiSelect::class, function (MockInterface $mock) {
+        $this->partialMock(MultiSelect::class, function (MockInterface $mock): void {
             $mock->shouldAllowMockingProtectedMethods();
 
             $mock->shouldReceive('getLabels')
@@ -51,7 +51,7 @@ class ValueRetrieverTest extends TestCase
         ?string $scope,
         ?string $locale,
         string|array $result
-    ) {
+    ): void {
         $retrieved = ValueRetriever::retrieve(
             $attributeCode,
             $type,
@@ -63,7 +63,7 @@ class ValueRetrieverTest extends TestCase
         $this->assertEquals($result, $retrieved);
     }
 
-    public function values(): array
+    public static function values(): array
     {
         return [
             [

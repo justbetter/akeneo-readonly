@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Listeners\ProductCreated;
+use App\Listeners\ProductDeleted;
 use App\Listeners\ProductUpdated;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use JustBetter\Akeneo\Events\ProductCreated as ProductCreatedEvent;
-use JustBetter\Akeneo\Events\ProductUpdated as ProductUpdatedEvent;
+use JustBetter\AkeneoClient\Events\ProductCreatedEvent;
+use JustBetter\AkeneoClient\Events\ProductRemovedEvent;
+use JustBetter\AkeneoClient\Events\ProductUpdatedEvent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,10 +19,8 @@ class EventServiceProvider extends ServiceProvider
         ProductCreatedEvent::class => [
             ProductCreated::class,
         ],
+        ProductRemovedEvent::class => [
+            ProductDeleted::class,
+        ],
     ];
-
-    public function boot()
-    {
-        //
-    }
 }

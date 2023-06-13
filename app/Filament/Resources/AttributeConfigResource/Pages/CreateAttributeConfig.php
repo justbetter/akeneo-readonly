@@ -10,7 +10,7 @@ class CreateAttributeConfig extends CreateRecord
 {
     public static string $resource = AttributeConfigResource::class;
 
-    public function beforeCreate()
+    public function beforeCreate(): void
     {
         if ($this->record['title']) {
             AttributeConfig::query()->update(['title' => false]);

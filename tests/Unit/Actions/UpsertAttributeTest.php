@@ -6,7 +6,6 @@ use App\Actions\Attribute\UpsertAttribute;
 use App\Models\Attribute;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use JustBetter\Akeneo\Models\Product as AkeneoProduct;
 use Tests\TestCase;
 
 class UpsertAttributeTest extends TestCase
@@ -22,11 +21,14 @@ class UpsertAttributeTest extends TestCase
         $this->product = Product::factory()->createOne();
     }
 
-    public function test_it_creates_attribute()
+    public function test_it_creates_attribute(): void
     {
         $akeneoProduct = $this->getAkeneoProduct();
 
-        app(UpsertAttribute::class)->upsert($akeneoProduct, $this->product);
+        /** @var UpsertAttribute $action */
+        $action = app(UpsertAttribute::class);
+
+        $action->upsert($akeneoProduct, $this->product);
 
         $this->assertDatabaseCount(Attribute::class, 2);
 
@@ -40,11 +42,14 @@ class UpsertAttributeTest extends TestCase
         }
     }
 
-    public function test_it_upserts_attribute()
+    public function test_it_upserts_attribute(): void
     {
         $akeneoProduct = $this->getAkeneoProduct();
 
-        app(UpsertAttribute::class)->upsert($akeneoProduct, $this->product);
+        /** @var UpsertAttribute $action */
+        $action = app(UpsertAttribute::class);
+
+        $action->upsert($akeneoProduct, $this->product);
 
         $akeneoProduct['values'] = [
             'attribute' => [
@@ -63,7 +68,7 @@ class UpsertAttributeTest extends TestCase
             ],
         ];
 
-        app(UpsertAttribute::class)->upsert($akeneoProduct, $this->product);
+        $action->upsert($akeneoProduct, $this->product);
 
         $this->assertDatabaseCount(Attribute::class, 2);
 
@@ -77,9 +82,9 @@ class UpsertAttributeTest extends TestCase
         }
     }
 
-    protected function getAkeneoProduct(): AkeneoProduct
+    protected function getAkeneoProduct(): array
     {
-        return new AkeneoProduct([
+        return [
             'values' => [
                 'attribute' => [
                     [
@@ -96,6 +101,6 @@ class UpsertAttributeTest extends TestCase
                     ],
                 ],
             ],
-        ]);
+        ];
     }
 }

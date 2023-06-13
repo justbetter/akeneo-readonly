@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(RetrieveProductsCommand::class)->weekly();
 
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
+        $schedule->command('cache:prune-stale-tags')->hourly();
     }
 
     protected function commands(): void
