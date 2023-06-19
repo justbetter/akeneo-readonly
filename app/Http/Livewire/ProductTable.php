@@ -59,7 +59,8 @@ class ProductTable extends DataTableComponent
 
         /** @var AttributeConfig $attribute */
         foreach ($attributes as $attribute) {
-            $columns[] = AttributeColumn::make($this->getLabel($attribute->code), $attribute->code, $attribute, $locale);
+            $columns[] = AttributeColumn::make($this->getLabel($attribute->code), $attribute->code, $attribute,
+                $locale);
         }
 
         return $columns;
@@ -98,8 +99,9 @@ class ProductTable extends DataTableComponent
                             ->on('attribute_configs.code', '=', 'attributes.code')
                             ->where('attribute_configs.searchable', '=', 1);
                     })
-                     ->where('value', 'LIKE', "%$searchQuery%");
-            });
+                    ->where('value', 'LIKE', "%$searchQuery%");
+            })
+                ->orWhere('identifier', 'LIKE', "%$searchQuery%");
         }
 
         return $builder;
