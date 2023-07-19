@@ -13,6 +13,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/product/{identifier}', [ProductController::class, 'show'])->name('product.detail');
 });
 
-Route::middleware([Authenticate::class])->group(function() {
+Route::middleware([Authenticate::class])->group(function () {
     Route::get('health', HealthCheckResultsController::class)->name('health');
 });
