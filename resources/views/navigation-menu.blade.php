@@ -60,6 +60,10 @@
                                 <x-dropdown-link href="/{{ config('filament.path') }}">
                                     {{ __('Admin') }}
                                 </x-dropdown-link>
+
+                                <x-dropdown-link href="{{ route('health') }}">
+                                    {{ __('Health') }}
+                                </x-dropdown-link>
                             @endif
 
                             <div class="border-t border-gray-100"></div>
