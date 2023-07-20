@@ -20,8 +20,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(RetrieveAttributeConfigsCommand::class)->weekly();
         $schedule->command(RetrieveProductsCommand::class)->weekly();
 
-        $schedule->command(RunHealthChecksCommand::class)->everyMinute();
         $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
+        $schedule->command(RunHealthChecksCommand::class)->everyMinute();
 
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         $schedule->command('cache:prune-stale-tags')->hourly();
